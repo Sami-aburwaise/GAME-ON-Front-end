@@ -1,42 +1,45 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+html, body,#app,#root{
+  margin: 0;
+  position: relative;
+
+  height: 100%;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+header{
+  background-color: blue;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+main{
+  background-color: gray;
+  margin-top: 100px;
+  height: 300vh;
+  width: 100vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+section{
+  height: 33%;
+  width: 100%;
 }
 
-.card {
-  padding: 2em;
+#greeting{
+  background-color: aqua;
 }
 
-.read-the-docs {
-  color: #888;
+#about{
+  background-color: burlywood;
+}
+
+#our-coaches{
+  background-color: violet;
+}
+
+footer{
+  background-color: cadetblue;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
