@@ -15,13 +15,31 @@ header{
 
 main{
   background-color: gray;
-  margin-top: 85px;
-  height: 100%;
+  margin-top: 100px;
+  height: 300vh;
+  width: 100vw;
+}
+
+section{
+  height: 33%;
+  width: 100%;
+}
+
+#greeting{
+  background-color: aqua;
+}
+
+#about{
+  background-color: burlywood;
+}
+
+#our-coaches{
+  background-color: violet;
 }
 
 footer{
   background-color: cadetblue;
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
 }
