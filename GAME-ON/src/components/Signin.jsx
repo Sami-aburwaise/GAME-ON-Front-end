@@ -1,7 +1,7 @@
-const Signin = () =>{
-  return( 
+const Signin = () => {
+  return (
     <form>
-
+      <label>Sign-in</label>
     </form>
   )
 }

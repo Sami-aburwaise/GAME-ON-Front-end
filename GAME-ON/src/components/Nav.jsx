@@ -5,6 +5,7 @@ const Nav = () => {
       <h2>LOGO HERE</h2>
       <nav>
         <NavLink to="/">Home</NavLink>
+        <NavLink to="/signup">Sign Up</NavLink>
       </nav>
     </header>
   )
