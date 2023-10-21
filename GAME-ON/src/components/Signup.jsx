@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
+  let navigate = useNavigate()
   const startingState = {
     firstName: '',
     lastName: '',
@@ -19,6 +21,7 @@ const Signup = () => {
     console.log(signupState)
 
     setSignupState(startingState)
+    navigate('/signin')
   }
 
   const handleChange = (event) => {
