@@ -4,7 +4,8 @@
   height: 50%;
 }
 .coach-card{
-  background-color: gray;
+  background-color: rgb(33, 33, 33);
+  border-radius: 5px;
   width: 25%;
   height: 100%;
   display: flex;
@@ -13,6 +14,12 @@
   align-items: center;
 }
 
+.coach-card:hover{
+  text-shadow: 1px 1px 2px black, 0 0 25px rgb(134, 134, 202), 0 0 5px darkblue;
+  box-shadow: 1px 1px 2px black, 0 0 25px rgb(134, 134, 202), 0 0 5px darkblue;
+
+}
+
 .coach-card img{
-  width: 20%;
+  width: 80%;
 }
