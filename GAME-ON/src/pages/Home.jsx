@@ -26,9 +26,30 @@ const Home = ({ coaches }) => {
         <h1>our coaches</h1>
         <Coaches coaches={coaches} />
       </section>
+      <section id="why">
+        <h1>Why GAME ON?</h1>
+        <h2>
+          Experienced and knowledgeable coaches: Our coaches are experts in a
+          variety of esports titles and have a proven track record of success.
+          Personalized coaching: We offer one-on-one and group coaching sessions
+          so that you can get the personalized attention you need. Flexible
+          scheduling: We offer a variety of scheduling options to fit your busy
+          schedule. Affordable pricing: We offer a variety of coaching packages
+          to fit your budget. Commitment to your success: We're committed to
+          helping you achieve your esports goals.
+        </h2>
+      </section>
       <section id="about">
         <h1>about GAME ON</h1>
+        <h2>
+          GAME ON is a premier esports coaching service that helps gamers of all
+          levels reach their full potential. We offer one-on-one and group
+          coaching sessions with experienced and knowledgeable coaches who can
+          help you improve your skills, learn new strategies, and develop a
+          winning mindset.
+        </h2>
       </section>
+
     </main>
   )
 }
