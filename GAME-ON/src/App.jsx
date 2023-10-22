@@ -1,4 +1,5 @@
 import './App.css'
+import './coaches.css'
 import Home from './pages/Home'
 import Signup from './components/Signup'
 import Nav from './components/Nav'
@@ -9,6 +10,8 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../Globals'
 import Sessions from './components/Sessions'
+
+
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -43,26 +46,33 @@ const App = () => {
     const user = await checkSession()
     setUser(user)
   }
+  
+    const [coaches, setCoaches] = useState([])
+
+  const getCoaches = async () => {
+    let response = await axios.get(`${BASE_URL}/show_coach`)
+    setCoaches(response.data)
+  }
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
       checkToken()
     }
+        getCoaches()
+
   }, [])
 
   return (
     <div id="app">
       <Nav />
-      <main>
-        <Routes>
-          <Route path="/session" element={<Sessions />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin setUser={setUser} />} />
-        </Routes>
-      </main>
 
+      <Routes>
+        <Route path="/session" element={<Sessions />} />
+        <Route path="/" element={<Home coaches={coaches} />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<Signin setUser={setUser} />} />
+      </Routes>
       <Footer />
     </div>
   )
