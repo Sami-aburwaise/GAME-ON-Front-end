@@ -1,12 +1,14 @@
 html, body,#app,#root{
   margin: 0;
   position: relative;
-
   height: 100%;
+}
+h1,h2,h3,h4,h5,h6{
+  margin:0;
 }
 
 header{
-  background-color: blue;
+  background-color: rgb(144, 144, 144);
   position: fixed;
   width: 100%;
   top: 0;
@@ -15,13 +17,16 @@ header{
 
 main{
   background-color: gray;
-  margin-top: 100px;
   height: 300vh;
   width: 100%;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 section{
-  height: 33%;
+  height: 100%;
   width: 100%;
 }
 
@@ -41,5 +46,6 @@ footer{
   background-color: cadetblue;
   position: relative;
   bottom: 0;
+  margin: 0;
   width: 100%;
 }
