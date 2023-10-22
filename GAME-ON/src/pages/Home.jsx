@@ -1,8 +1,10 @@
+import { NavLink } from 'react-router-dom'
 const Home = () => {
   return (
     <main>
       <section id="greeting">
         <h1>GAME ON!</h1>
+        <NavLink to="/session">Book a Session</NavLink>
       </section>
 
       <section id="about">

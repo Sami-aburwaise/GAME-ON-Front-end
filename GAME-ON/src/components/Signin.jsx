@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { BASE_URL } from '../../Globals'
 
 const Signin = ({ setUser }) => {
   let navigate = useNavigate()
@@ -12,10 +13,7 @@ const Signin = ({ setUser }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const payload = await axios.post(
-      'http://localhost:4000/auth/signin',
-      signinState
-    )
+    const payload = await axios.post(`${BASE_URL}/auth/signin`, signinState)
 
     console.log(signinState)
     setUser(payload)

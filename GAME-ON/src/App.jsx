@@ -8,6 +8,7 @@ import Signin from './components/Signin'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../Globals'
+import Sessions from './components/Sessions'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -53,12 +54,14 @@ const App = () => {
   return (
     <div id="app">
       <Nav />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/signin" element={<Signin setUser={setUser} />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/session" element={<Sessions />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin setUser={setUser} />} />
+        </Routes>
+      </main>
 
       <Footer />
     </div>
