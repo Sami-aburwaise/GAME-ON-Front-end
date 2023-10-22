@@ -1,4 +1,5 @@
 import './App.css'
+import './coaches.css'
 import Home from './pages/Home'
 import Signup from './components/Signup'
 import Nav from './components/Nav'
@@ -8,6 +9,8 @@ import Signin from './components/Signin'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../Globals'
+
+
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -42,12 +45,21 @@ const App = () => {
     const user = await checkSession()
     setUser(user)
   }
+  
+    const [coaches, setCoaches] = useState([])
+
+  const getCoaches = async () => {
+    let response = await axios.get(`${BASE_URL}/show_coach`)
+    setCoaches(response.data)
+  }
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
       checkToken()
     }
+        getCoaches()
+
   }, [])
 
   return (
@@ -55,11 +67,10 @@ const App = () => {
       <Nav />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home coaches={coaches} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin setUser={setUser} />} />
       </Routes>
-
       <Footer />
     </div>
   )
