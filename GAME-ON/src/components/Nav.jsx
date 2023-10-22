@@ -5,6 +5,8 @@ const Nav = () => {
       <h2>LOGO HERE</h2>
       <nav>
         <NavLink to="/">Home</NavLink>
+        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/signin">Sign In</NavLink>
       </nav>
     </header>
   )
