@@ -8,8 +8,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../Globals'
 
-import Button from '@mui/material/Button';
-
+import Button from '@mui/material/Button'
 
 const App = () => {
   const [coaches, setCoaches] = useState([])
@@ -29,9 +28,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home coaches={coaches} />} />
       </Routes>
-
-{/*       <Button variant="contained">Hello world</Button>     
- */}       
       <Footer />
     </div>
   )
