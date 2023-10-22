@@ -1,4 +1,5 @@
 import './App.css'
+import './coaches.css'
 import Home from './pages/Home'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
@@ -8,7 +9,7 @@ import axios from 'axios'
 import { BASE_URL } from '../Globals'
 
 const App = () => {
-  const [coaches, setCoaches] = useState(null)
+  const [coaches, setCoaches] = useState([])
 
   const getCoaches = async () => {
     let response = await axios.get(`${BASE_URL}/show_coach`)
@@ -23,7 +24,7 @@ const App = () => {
       <Nav />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home coaches={coaches} />} />
       </Routes>
 
       <Footer />
