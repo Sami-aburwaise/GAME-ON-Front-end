@@ -9,6 +9,7 @@ import Signin from './components/Signin'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../Globals'
+import Sessions from './components/Sessions'
 
 
 
@@ -67,6 +68,7 @@ const App = () => {
       <Nav />
 
       <Routes>
+        <Route path="/session" element={<Sessions />} />
         <Route path="/" element={<Home coaches={coaches} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin setUser={setUser} />} />
