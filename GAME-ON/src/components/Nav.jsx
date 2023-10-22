@@ -11,6 +11,7 @@ import IconButton from '@mui/material/IconButton'
 const Nav = () => {
   return (
     <header>
+
       <div className="header">
         <h1>GAME ON</h1>
         <nav>
@@ -23,9 +24,14 @@ const Nav = () => {
           <a href="#about">
             <h3>about</h3>
           </a>
+    
+            <NavLink to="/">Home</NavLink>
+        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/signin">Sign In</NavLink>
         </nav>
       </div>
       <h3>sign in</h3>
+
     </header>
   )
 }
