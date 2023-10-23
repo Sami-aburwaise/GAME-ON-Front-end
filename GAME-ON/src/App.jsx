@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../Globals'
 import Sessions from './components/Sessions'
+import UserProfile from './pages/UserProfile'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -60,6 +61,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin setUser={setUser} />} />
+          <Route path="/profile" element={<UserProfile user={user} />} />
         </Routes>
       </main>
 

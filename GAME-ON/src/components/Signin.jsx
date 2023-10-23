@@ -20,7 +20,7 @@ const Signin = ({ setUser }) => {
     localStorage.setItem('token', payload.data.token)
     console.log(payload.data.token)
     setSigninState(startingState)
-    navigate('/')
+    navigate('/profile')
   }
 
   const handleChange = (event) => {
