@@ -19,7 +19,7 @@ const Home = ({ coaches }) => {
         <div className="content">
           <h1>GAME ON!</h1>
           <h2>Get pro</h2>
-          <NavLink to="/session">
+          <NavLink to="/gamesession">
             <Button variant="contained" color="success" size="large">
               Book a Session
             </Button>

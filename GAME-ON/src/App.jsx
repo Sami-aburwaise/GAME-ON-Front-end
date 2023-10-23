@@ -25,6 +25,7 @@ const App = () => {
       // if the token exists, we set the authorization header
       if (token) {
         config.headers['authorization'] = `Bearer ${token}`
+        console.log(token)
       }
       return config // We return the new config if the token exists or the default config if no token exists.
       // Provides the token to each request that passes through axios
@@ -65,7 +66,7 @@ const App = () => {
     <div id="app">
       <Nav />
       <Routes>
-        <Route path="/session" element={<Sessions user={user} />} />
+        <Route path="/gamesession" element={<Sessions user={user} />} />
         <Route path="/" element={<Home coaches={coaches} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin setUser={setUser} />} />
