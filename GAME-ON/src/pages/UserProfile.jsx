@@ -5,7 +5,6 @@ import Sessions from '../components/Sessions'
 
 const UserProfile = ({ user }) => {
   const [userInfo, setUserInfo] = useState(null)
-  const [rerender, setRerender] = useState(false)
   const [message, setMessage] = useState('')
 
   const handleUser = async () => {
@@ -13,7 +12,7 @@ const UserProfile = ({ user }) => {
       `${BASE_URL}/profile?userid=${user.data.user.id}`
     )
     let sessionResponse = await axios.get(
-      `${BASE_URL}/gamesession?userid=${user.data.user.id}`
+      `${BASE_URL}/gamesession/get?userId=${user.data.user.id}`
     )
     setUserInfo({ ...response.data, ...sessionResponse })
   }
@@ -28,7 +27,7 @@ const UserProfile = ({ user }) => {
   }, [message])
   if (userInfo) {
     return (
-      <div>
+      <div className="full-page">
         <h2>{message}</h2>
         <div>
           <h3>
@@ -54,7 +53,6 @@ const UserProfile = ({ user }) => {
               <th>Coach</th>
             </tr>
           </tbody>
-
           {userInfo.data.map((session) => (
             <tbody key={session._id}>
               <tr>

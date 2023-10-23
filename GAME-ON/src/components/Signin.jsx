@@ -27,24 +27,26 @@ const Signin = ({ setUser }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Sign in</h1>
-      <label htmlFor="emailAddress">Email Address</label>
-      <input
-        type="email"
-        id="emailAddress"
-        onChange={handleChange}
-        value={signinState.emailAddress}
-      />
-      <label htmlFor="passwordDigest">Password</label>
-      <input
-        type="password"
-        id="password"
-        onChange={handleChange}
-        value={signinState.password}
-      />
-      <button type="submit"> Sign In</button>
-    </form>
+    <div className="full-page">
+      <form onSubmit={handleSubmit}>
+        <h1>Sign in</h1>
+        <label htmlFor="emailAddress">Email Address</label>
+        <input
+          type="email"
+          id="emailAddress"
+          onChange={handleChange}
+          value={signinState.emailAddress}
+        />
+        <label htmlFor="passwordDigest">Password</label>
+        <input
+          type="password"
+          id="password"
+          onChange={handleChange}
+          value={signinState.password}
+        />
+        <button type="submit"> Sign In</button>
+      </form>
+    </div>
   )
 }
 

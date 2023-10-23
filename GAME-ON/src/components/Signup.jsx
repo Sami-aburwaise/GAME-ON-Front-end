@@ -30,7 +30,7 @@ const Signup = () => {
   }
 
   return (
-    <main>
+    <div className="full-page">
       <form onSubmit={handleSubmit}>
         <label htmlFor="firstName">First Name</label>
         <input
@@ -76,7 +76,7 @@ const Signup = () => {
         />
         <button type="submit">Submit</button>
       </form>
-    </main>
+    </div>
   )
 }
 
