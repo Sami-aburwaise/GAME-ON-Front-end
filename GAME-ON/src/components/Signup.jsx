@@ -17,7 +17,7 @@ const Signup = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    await axios.post(`${BASE_URL}/auth/signup`, signupState)
+    await axios.post(`${BASE_URL}/signup`, signupState)
 
     console.log(signupState)
 

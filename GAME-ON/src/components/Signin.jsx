@@ -13,7 +13,7 @@ const Signin = ({ setUser }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const payload = await axios.post(`${BASE_URL}/auth/signin`, signinState)
+    const payload = await axios.post(`${BASE_URL}/signin`, signinState)
 
     console.log(signinState)
     setUser(payload)
