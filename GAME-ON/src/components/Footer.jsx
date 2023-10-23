@@ -1,7 +1,7 @@
-const Footer = () =>{
-  return(
+const Footer = () => {
+  return (
     <footer>
-      <h2>weewew</h2>
+      <h2>Copyright © 2023 GAME ON. All rights reserved.</h2>
     </footer>
   )
 }
