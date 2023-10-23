@@ -34,7 +34,8 @@ const App = () => {
   const checkSession = async () => {
     try {
       const response = await Client.get('http://localhost:4000/session')
-      return response.data
+      console.log(response)
+      return response.data.id
     } catch (error) {
       throw error
     }
@@ -57,7 +58,7 @@ const App = () => {
       <Nav />
       <main>
         <Routes>
-          <Route path="/session" element={<Sessions user={user} />} />
+          <Route path="/gamesession" element={<Sessions user={user} />} />
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin setUser={setUser} />} />
