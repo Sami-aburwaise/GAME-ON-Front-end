@@ -1,45 +1,146 @@
 html, body,#app,#root{
   margin: 0;
   position: relative;
-
   height: 100%;
+  color: rgb(240, 240, 240);
 }
+
 
 header{
-  background-color: blue;
+  background-color: rgb(57, 57, 57);
+  z-index: 8;
+  height: 60px;
   position: fixed;
-  width: 100%;
   top: 0;
   left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
+header h3{
+  white-space: nowrap;
+  margin-right: 5px;
+}
+
+header .header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+nav{
+  display: flex;
+  justify-content: space-evenly;
+  width: 70%;
+}
+
+header a{
+  text-decoration: none;
+  color: white;
+}
+
 
 main{
   background-color: gray;
-  margin-top: 100px;
-  height: 300vh;
-  width: 100vw;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 section{
-  height: 33%;
+  height: 100vh;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+section h1{
+  font-size: 75px;
+  margin: 25px;
+}
+
+.content h2{
+  font-size: 50px;
+  margin: 10px;
+  text-align: center;
+}
+
+section p{
+  width: 50%;
+  margin: 30px;
+  font-size: 30px;
+
 }
 
 #greeting{
   background-color: aqua;
+
+}
+video {
+object-fit: cover;
+}
+.content {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;  
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.75), #1A1A1A);
+
+}
+
+.content a{
+  align-self: flex-end;
+  margin: 0 25px;
+}
+
+#why{
+  background-color: #202020;
+  background: url('../src/assets/bg2.png');
 }
 
 #about{
-  background-color: burlywood;
+  background-color: #2C2C2C;
 }
 
 #our-coaches{
-  background-color: violet;
+  background-color: #262626;
 }
 
 footer{
-  background-color: cadetblue;
+  background-color: black;
   position: relative;
   bottom: 0;
+  margin: 0;
   width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000e22;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #102c3a;
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #13184e;
 }
