@@ -1,9 +1,49 @@
-const CoachProfile = () =>{
+import { BASE_URL } from '../../Globals'
 
-  return(
-    <div>
-      
-    </div>
+import * as React from 'react'
+import Box from '@mui/material/Box'
+import Rating from '@mui/material/Rating'
+import Typography from '@mui/material/Typography'
+
+const CoachProfile = ({ coach }) => {
+  const findAvg = (arr) => {
+    let sum = 0
+    arr.forEach((review) => {
+      sum += review.rating
+    })
+    return (sum /= arr.length).toFixed(2)
+  }
+  return (
+    <section id="coach-profile">
+      <div className="details-container">
+        <h1>{coach.name}</h1>
+        <img src={`${BASE_URL}/${coach.profile_image}`} alt="" />
+        <h3>{coach.description}</h3>
+        <h3>avrage rating: {findAvg(coach.reviews)}</h3>
+        <Rating
+          name="read-only"
+          value={findAvg(coach.reviews)}
+          precision={0.5}
+          readOnly
+          size="large"
+        />
+      </div>
+      <div className="reviews-container">
+        <h3>reviews:</h3>
+        {coach.reviews.map((reviwe) => (
+          <div className="review">
+            <h4>{reviwe.comment}</h4>
+            <Rating className='rating'
+              name="read-only"
+              value={findAvg(coach.reviews)}
+              precision={0.5}
+              readOnly
+              size="small"
+            />
+          </div>
+        ))}
+      </div>
+    </section>
   )
 }
 
