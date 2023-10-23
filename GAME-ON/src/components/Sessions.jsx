@@ -1,10 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../Globals'
 import axios from 'axios'
 
 const Sessions = ({ user }) => {
   let navigate = useNavigate()
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/signin')
+    }
+  }, [])
 
   const startingFormState = {
     game: '',
@@ -19,7 +25,7 @@ const Sessions = ({ user }) => {
     date: '',
     sessionType: '',
     coach: 'ali',
-    userId: user.data.user.id
+    userId: user
   })
 
   const handleChange = (event) => {

@@ -36,7 +36,8 @@ const App = () => {
   const checkSession = async () => {
     try {
       const response = await Client.get('http://localhost:4000/session')
-      return response.data
+      console.log(response)
+      return response.data.id
     } catch (error) {
       throw error
     }
