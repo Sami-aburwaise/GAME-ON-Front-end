@@ -5,6 +5,8 @@ import Sessions from '../components/Sessions'
 
 const UserProfile = ({ user }) => {
   const [userInfo, setUserInfo] = useState(null)
+  const [rerender, setRerender] = useState(false)
+  const [message, setMessage] = useState('')
 
   const handleUser = async () => {
     console.log(user.data.user.id)
@@ -17,14 +19,20 @@ const UserProfile = ({ user }) => {
     setUserInfo({ ...response.data, ...sessionResponse })
   }
 
+  const deleteSession = async (id) => {
+    let response = await axios.get(`${BASE_URL}/gamesession/${id}`)
+    setMessage(response.data.msg)
+  }
+
   useEffect(() => {
     handleUser()
-  }, [])
+  }, [message])
   if (userInfo) {
     console.log(userInfo)
 
     return (
       <div>
+        <h2>{message}</h2>
         <div>
           <h3>
             Name: {userInfo.firstName}
@@ -41,8 +49,31 @@ const UserProfile = ({ user }) => {
           <h3>Discord: {userInfo.discordAccount}</h3>
         </div>
         <table>
+          <tbody>
+            <tr>
+              <th>Game</th>
+              <th>Date</th>
+              <th>Session Type</th>
+              <th>Coach</th>
+            </tr>
+          </tbody>
+
           {userInfo.data.map((session) => (
-            <h1>asdasd{session.game}</h1>
+            <tbody>
+              <tr>
+                <td>
+                  <h1>asdasd{session.game}</h1>
+                </td>
+                <td>{session.date}</td>
+                <td>{session.sessionType}</td>
+                <td>{session.coach}</td>
+                <td>
+                  <button onClick={() => deleteSession(session._id)}>
+                    Cancel Session
+                  </button>
+                </td>
+              </tr>
+            </tbody>
           ))}
         </table>
       </div>
