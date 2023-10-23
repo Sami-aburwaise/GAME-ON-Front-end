@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../Globals'
 import Sessions from './components/Sessions'
+import UserProfile from './pages/UserProfile'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -33,7 +34,7 @@ const App = () => {
 
   const checkSession = async () => {
     try {
-      const response = await Client.get('http://localhost:4000/auth/session')
+      const response = await Client.get('http://localhost:4000/session')
       return response.data
     } catch (error) {
       throw error
@@ -63,12 +64,12 @@ const App = () => {
   return (
     <div id="app">
       <Nav />
-
       <Routes>
-        <Route path="/session" element={<Sessions />} />
+        <Route path="/session" element={<Sessions user={user} />} />
         <Route path="/" element={<Home coaches={coaches} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin setUser={setUser} />} />
+        <Route path="/profile" element={<UserProfile user={user} />} />
       </Routes>
       <Footer />
     </div>

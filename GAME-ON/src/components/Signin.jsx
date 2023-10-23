@@ -7,20 +7,19 @@ const Signin = ({ setUser }) => {
   let navigate = useNavigate()
   const startingState = {
     emailAddress: '',
-    passwordDigest: ''
+    password: ''
   }
   const [signinState, setSigninState] = useState(startingState)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const payload = await axios.post(`${BASE_URL}/auth/signin`, signinState)
+    const payload = await axios.post(`${BASE_URL}/signin`, signinState)
 
-    console.log(signinState)
     setUser(payload)
     localStorage.setItem('token', payload.data.token)
-    console.log(payload.data.token)
+
     setSigninState(startingState)
-    navigate('/')
+    navigate('/profile')
   }
 
   const handleChange = (event) => {

@@ -3,21 +3,23 @@ import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../Globals'
 import axios from 'axios'
 
-const Sessions = () => {
+const Sessions = ({ user }) => {
   let navigate = useNavigate()
 
   const startingFormState = {
     game: '',
     date: '',
     sessionType: '',
-    coach: ''
+    coach: '',
+    userId: ''
   }
 
   const [formState, setFormState] = useState({
     game: '',
     date: '',
     sessionType: '',
-    coach: ''
+    coach: 'ali',
+    userId: user.data.user.id
   })
 
   const handleChange = (event) => {
