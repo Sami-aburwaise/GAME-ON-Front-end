@@ -11,7 +11,7 @@ const findAvg = (arr) => {
   arr.forEach((review) => {
     sum += review.rating
   })
-  return (sum /= arr.length).toFixed(2)
+  return sum ? (sum /= arr.length).toFixed(2) : 0
 }
 
 const Coaches = ({ coaches, setCoach }) => {
@@ -30,7 +30,7 @@ const Coaches = ({ coaches, setCoach }) => {
           <img src={`${BASE_URL}/${coach.profile_image}`} alt="" />
           <Rating
             name="read-only"
-            value={findAvg(coach.reviews)}
+            value={parseFloat(findAvg(coach.reviews))}
             precision={0.5}
             readOnly
             size="large"

@@ -3,6 +3,8 @@ html, body,#app,#root{
   position: relative;
   height: 100%;
   color: rgb(240, 240, 240);
+  background-color: gray;
+
 }
 
 
@@ -43,7 +45,6 @@ header a{
 
 
 main{
-  background-color: gray;
   height: fit-content;
   width: 100%;
   display: flex;
@@ -143,4 +144,12 @@ footer{
 
 ::-webkit-scrollbar-thumb:hover {
   background: #13184e;
+}
+
+.full-page{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
