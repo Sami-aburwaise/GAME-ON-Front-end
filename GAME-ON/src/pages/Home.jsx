@@ -49,7 +49,6 @@ const Home = ({ coaches }) => {
           winning mindset.
         </h2>
       </section>
-
     </main>
   )
 }
