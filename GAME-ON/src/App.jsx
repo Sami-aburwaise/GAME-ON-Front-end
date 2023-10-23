@@ -1,5 +1,5 @@
 import './App.css'
-import './coaches.css'
+import './coach.css'
 import Home from './pages/Home'
 import Signup from './components/Signup'
 import Nav from './components/Nav'
@@ -10,8 +10,6 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../Globals'
 import Sessions from './components/Sessions'
-
-
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -46,8 +44,8 @@ const App = () => {
     const user = await checkSession()
     setUser(user)
   }
-  
-    const [coaches, setCoaches] = useState([])
+
+  const [coaches, setCoaches] = useState([])
 
   const getCoaches = async () => {
     let response = await axios.get(`${BASE_URL}/show_coach`)
@@ -59,8 +57,7 @@ const App = () => {
     if (token) {
       checkToken()
     }
-        getCoaches()
-
+    getCoaches()
   }, [])
 
   return (
