@@ -9,7 +9,6 @@ const UserProfile = ({ user }) => {
   const [message, setMessage] = useState('')
 
   const handleUser = async () => {
-    console.log(user.data.user.id)
     let response = await axios.get(
       `${BASE_URL}/profile?userid=${user.data.user.id}`
     )
@@ -28,8 +27,6 @@ const UserProfile = ({ user }) => {
     handleUser()
   }, [message])
   if (userInfo) {
-    console.log(userInfo)
-
     return (
       <div>
         <h2>{message}</h2>
@@ -59,7 +56,7 @@ const UserProfile = ({ user }) => {
           </tbody>
 
           {userInfo.data.map((session) => (
-            <tbody>
+            <tbody key={session._id}>
               <tr>
                 <td>
                   <h1>asdasd{session.game}</h1>
