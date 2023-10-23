@@ -1,4 +1,5 @@
 import './App.css'
+import './coach.css'
 import Home from './pages/Home'
 import Signup from './components/Signup'
 import Nav from './components/Nav'
@@ -45,26 +46,31 @@ const App = () => {
     setUser(user)
   }
 
+  const [coaches, setCoaches] = useState([])
+
+  const getCoaches = async () => {
+    let response = await axios.get(`${BASE_URL}/show_coach`)
+    setCoaches(response.data)
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
       checkToken()
     }
+    getCoaches()
   }, [])
 
   return (
     <div id="app">
       <Nav />
-      <main>
-        <Routes>
-          <Route path="/session" element={<Sessions user={user} />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin setUser={setUser} />} />
-          <Route path="/profile" element={<UserProfile user={user} />} />
-        </Routes>
-      </main>
-
+      <Routes>
+        <Route path="/session" element={<Sessions user={user} />} />
+        <Route path="/" element={<Home coaches={coaches} />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<Signin setUser={setUser} />} />
+        <Route path="/profile" element={<UserProfile user={user} />} />
+      </Routes>
       <Footer />
     </div>
   )
