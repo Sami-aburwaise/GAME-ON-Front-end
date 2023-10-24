@@ -2,6 +2,10 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { BASE_URL } from '../../Globals'
+import { NavLink } from 'react-router-dom'
+
+import Stack from '@mui/material/Stack'
+import Button from '@mui/material/Button'
 
 const Signin = ({ setUser }) => {
   let navigate = useNavigate()
@@ -44,7 +48,14 @@ const Signin = ({ setUser }) => {
           onChange={handleChange}
           value={signinState.password}
         />
-        <button type="submit"> Sign In</button>
+        <div>
+          <Button variant="text" onClick={() => navigate('/signup')}>
+            Sign up
+          </Button>
+          <Button variant="contained" type="submit">
+            Sign in
+          </Button>
+        </div>
       </form>
     </div>
   )
