@@ -3,7 +3,22 @@ import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../Globals'
 import axios from 'axios'
 
+import ToggleButton from '@mui/material/ToggleButton'
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
+
+import dayjs from 'dayjs'
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
+
 const Sessions = ({ user, sessionToEdit }) => {
+  const [games, setGames] = useState([
+    'Roblox',
+    'Call of duty',
+    'Fortnite',
+    'Rainbow Six Siege'
+  ])
   let navigate = useNavigate()
   useEffect(() => {
     if (!user) {
@@ -28,7 +43,13 @@ const Sessions = ({ user, sessionToEdit }) => {
 
   const handleChange = (event) => {
     event.preventDefault()
+    console.log(event.target.value)
     setFormState({ ...formState, [event.target.id]: event.target.value })
+  }
+
+  const handleDate = (event) => {
+    console.log(event.$d)
+    setFormState({ ...formState, date: event.$d })
   }
 
   const bookSession = async () => {
@@ -38,14 +59,10 @@ const Sessions = ({ user, sessionToEdit }) => {
           formState
         )
       : await axios.post(`${BASE_URL}/gamesession/create`, formState)
-
-    console.log(formState)
-    console.log(response)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-
     console.log(formState)
     bookSession()
     setFormState(startingFormState)
@@ -54,43 +71,35 @@ const Sessions = ({ user, sessionToEdit }) => {
   return user ? (
     <div className="full-page">
       <form>
-        <div className="buttons">
-          <button
-            type="button"
-            onClick={(event) => handleChange(event)}
-            id="game"
-            value="Call of Duty"
-          >
-            Call of Duty
-          </button>
-          <button
-            type="button"
-            onClick={(event) => handleChange(event)}
-            id="game"
-            value="Roblox"
-          >
-            Roblox
-          </button>
-          <button
-            type="button"
-            onClick={(event) => handleChange(event)}
-            id="game"
-            value="Fortnite"
-          >
-            Fortnite
-          </button>
-          <button
-            type="button"
-            onClick={(event) => handleChange(event)}
-            id="game"
-            value="Rainbow Six Siege"
-          >
-            Rainbow Six Siege
-          </button>
-        </div>
+        <ToggleButtonGroup
+          color="primary"
+          value={formState.game}
+          exclusive
+          aria-label="Platform"
+          size="large"
+        >
+          {games.map((game) => (
+            <ToggleButton
+              key={game}
+              id="game"
+              size="large"
+              value={game}
+              onClick={(event) => {
+                handleChange(event)
+              }}
+            >
+              {game}
+            </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
 
         <div className="date">
-          <label htmlFor="date">Choose your Date</label>
+          <LocalizationProvider dateAdapter={AdapterDayjs} mode="dark">
+            <DateTimePicker
+              onChange={(event) => handleDate(event)}
+              defaultValue={dayjs(formState.date)}
+            />
+          </LocalizationProvider>
         </div>
         <div className="sessionType">
           <h3>Standard Training</h3>
@@ -139,12 +148,6 @@ const Sessions = ({ user, sessionToEdit }) => {
           >
             Book Session
           </button>
-          <input
-            type="date"
-            id="date"
-            readOnly={false}
-            onChange={handleChange}
-          />
         </div>
         <button type="submit" onClick={handleSubmit}>
           Confirm Booking

@@ -3,11 +3,9 @@ html, body,#app,#root{
   position: relative;
   height: 100%;
   color: rgb(240, 240, 240);
-  background-color: rgb(63, 63, 63);
+  background-color: rgb(48, 48, 48);
 
 }
-
-
 
 
 header{
@@ -161,4 +159,8 @@ footer{
 #logout-button{
   align-self: self-end;
   margin: 25px;
+}
+
+.selector{
+  font-size: 100px;
 }

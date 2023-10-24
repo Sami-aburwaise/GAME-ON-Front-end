@@ -24,6 +24,12 @@
   width: 80%;
 }
 
+.coach-card .rating{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 #coach-profile{
   display: flex;
   flex-direction: row;
