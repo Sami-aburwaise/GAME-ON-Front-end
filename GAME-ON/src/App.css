@@ -153,3 +153,9 @@ footer{
   justify-content: center;
   align-items: center;
 }
+
+#logout-button{
+  align-self: self-end;
+
+  margin: 25px;
+}

@@ -65,7 +65,7 @@ const App = () => {
 
   return (
     <div id="app">
-      <Nav user={user}/>
+      <Nav user={user} />
       <Routes>
         <Route path={'/gamesession'} element={<Sessions user={user} />} />
         <Route path="/" element={<Home coaches={coaches} user={user} />} />
