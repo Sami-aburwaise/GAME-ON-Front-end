@@ -11,7 +11,7 @@ const Sessions = ({ user }) => {
     date: '',
     sessionType: '',
     coach: '',
-    userId: ''
+    userId: user.id
   }
 
   const [formState, setFormState] = useState({
@@ -28,7 +28,12 @@ const Sessions = ({ user }) => {
   }
 
   const bookSession = async () => {
-    await axios.post(`${BASE_URL}/gamesession/create`, formState)
+    const response = await axios.post(
+      `${BASE_URL}/gamesession/create`,
+      formState
+    )
+    console.log(formState)
+    console.log(response)
   }
 
   const handleSubmit = (event) => {
@@ -37,11 +42,13 @@ const Sessions = ({ user }) => {
     console.log(formState)
     bookSession()
     setFormState(startingFormState)
+    navigate('/profile')
   }
 
-  return user ? (
+  return (
     <div className="full-page">
       <form>
+        <h1>Choose Your Game</h1>
         <div className="buttons">
           <button
             type="button"
@@ -77,9 +84,7 @@ const Sessions = ({ user }) => {
           </button>
         </div>
 
-        <div className="date">
-          <label htmlFor="date">Choose your Date</label>
-        </div>
+        <div className="date"></div>
         <div className="sessionType">
           <h3>Standard Training</h3>
           <h4>35 BHD</h4>
@@ -89,6 +94,7 @@ const Sessions = ({ user }) => {
             success on global competition stages. They have extensive coaching
             experience at the highest levels of play.
           </p>
+          <br />
           <button
             onClick={(event) => handleChange(event)}
             id="sessionType"
@@ -105,6 +111,7 @@ const Sessions = ({ user }) => {
             committed coaches devoted to coaching students and improving play at
             all ranks
           </p>
+          <br />
           <button
             onClick={(event) => handleChange(event)}
             id="sessionType"
@@ -120,13 +127,17 @@ const Sessions = ({ user }) => {
             global competition stages. They have extensive coaching experience
             at the highest levels of play.
           </p>
+          <br />
           <button
             onClick={(event) => handleChange(event)}
             id="sessionType"
             value="Godly Training"
           >
             Book Session
-          </button>{' '}
+          </button>
+          <br />
+          <label htmlFor="date">Choose your Date</label>
+          <br />
           <input
             type="date"
             id="date"
@@ -134,15 +145,11 @@ const Sessions = ({ user }) => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" onClick={handleSubmit}>
+
+        <button type="submit" onClick={handleSubmit} className="submitBtn">
           Confirm Booking
         </button>
       </form>
-    </div>
-  ) : (
-    <div>
-      <h2>Please Sign In to Book Your Session</h2>
-      <button onClick={() => navigate('/signin')}>Sign In</button>
     </div>
   )
 }

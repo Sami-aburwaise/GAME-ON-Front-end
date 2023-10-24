@@ -15,7 +15,7 @@ const Signin = ({ setUser }) => {
     event.preventDefault()
     const payload = await axios.post(`${BASE_URL}/signin`, signinState)
 
-    setUser(payload)
+    setUser(payload.data.user)
     localStorage.setItem('token', payload.data.token)
 
     setSigninState(startingState)

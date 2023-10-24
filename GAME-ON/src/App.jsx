@@ -17,18 +17,16 @@ const App = () => {
 
   const Client = axios.create({ BASE_URL })
 
-  // Intercepts every request axios makes
   Client.interceptors.request.use(
     (config) => {
-      // Reads the token in localStorage
+      //This would read the token that is stored in local storage
       const token = localStorage.getItem('token')
-      // if the token exists, we set the authorization header
+      //if statement where if there is a token, it would set the authorization heade
       if (token) {
         config.headers['authorization'] = `Bearer ${token}`
         console.log(token)
       }
-      return config // We return the new config if the token exists or the default config if no token exists.
-      // Provides the token to each request that passes through axios
+      return config
     },
     (error) => Promise.reject(error)
   )
@@ -36,8 +34,8 @@ const App = () => {
   const checkSession = async () => {
     try {
       const response = await Client.get('http://localhost:4000/session')
-      console.log(response)
-      return response.data.id
+      console.log(response.data)
+      return response.data
     } catch (error) {
       throw error
     }
@@ -65,13 +63,16 @@ const App = () => {
 
   return (
     <div id="app">
-      <Nav />
+      <Nav user={user} />
       <Routes>
-        <Route path="/gamesession" element={<Sessions user={user} />} />
-        <Route path="/" element={<Home coaches={coaches} />} />
+        <Route path={'/gamesession'} element={<Sessions user={user} />} />
+        <Route path="/" element={<Home coaches={coaches} user={user} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin setUser={setUser} />} />
-        <Route path="/profile" element={<UserProfile user={user} />} />
+        <Route
+          path="/profile"
+          element={<UserProfile user={user} setUser={setUser} />}
+        />
       </Routes>
       <Footer />
     </div>
