@@ -78,12 +78,12 @@ section p{
 
 }
 
-#greeting{
-  background-color: aqua;
+#Book-session{
+  overflow: hidden;
 
 }
 video {
-object-fit: cover;
+  width: 100%;
 }
 .content {
   position: absolute;

@@ -11,7 +11,7 @@ const CoachProfile = ({ coach }) => {
     arr.forEach((review) => {
       sum += review.rating
     })
-    return sum ? (sum /= arr.length).toFixed(2) : 0
+    return parseFloat(sum ? (sum /= arr.length).toFixed(2) : 0)
   }
   return (
     <section id="coach-profile">
@@ -31,7 +31,7 @@ const CoachProfile = ({ coach }) => {
       <div className="reviews-container">
         <h3>reviews:</h3>
         {coach.reviews.map((reviwe) => (
-          <div className="review" key={reviwe.comment}>
+          <div className="review" key={reviwe._id}>
             <h4>{reviwe.comment}</h4>
             <Rating
               className="rating"

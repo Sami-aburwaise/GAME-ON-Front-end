@@ -17,7 +17,7 @@ const Sessions = ({ user }) => {
     date: '',
     sessionType: '',
     coach: '',
-    userId: ''
+    userId: user.id
   }
 
   const [formState, setFormState] = useState({
@@ -25,7 +25,7 @@ const Sessions = ({ user }) => {
     date: '',
     sessionType: '',
     coach: 'ali',
-    userId: user
+    userId: user.id
   })
 
   const handleChange = (event) => {
@@ -34,7 +34,12 @@ const Sessions = ({ user }) => {
   }
 
   const bookSession = async () => {
-    await axios.post(`${BASE_URL}/gamesession`, formState)
+    const response = await axios.post(
+      `${BASE_URL}/gamesession/create`,
+      formState
+    )
+    console.log(formState)
+    console.log(response)
   }
 
   const handleSubmit = (event) => {
@@ -45,7 +50,7 @@ const Sessions = ({ user }) => {
     setFormState(startingFormState)
   }
 
-  return (
+  return user ? (
     <div className="full-page">
       <form>
         <div className="buttons">
@@ -132,7 +137,7 @@ const Sessions = ({ user }) => {
             value="Godly Training"
           >
             Book Session
-          </button>{' '}
+          </button>
           <input
             type="date"
             id="date"
@@ -145,6 +150,14 @@ const Sessions = ({ user }) => {
         </button>
       </form>
     </div>
+  ) : (
+    <button
+      onClick={() => {
+        navigate('/signin')
+      }}
+    >
+      Sign In
+    </button>
   )
 }
 
