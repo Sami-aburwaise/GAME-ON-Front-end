@@ -12,6 +12,7 @@ import { BASE_URL } from '../Globals'
 import Sessions from './components/Sessions'
 import UserProfile from './pages/UserProfile'
 
+
 const App = () => {
   const [user, setUser] = useState(null)
 

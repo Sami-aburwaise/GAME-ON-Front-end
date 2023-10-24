@@ -3,9 +3,11 @@ html, body,#app,#root{
   position: relative;
   height: 100%;
   color: rgb(240, 240, 240);
-  background-color: gray;
+  background-color: rgb(63, 63, 63);
 
 }
+
+
 
 
 header{
@@ -101,7 +103,9 @@ video {
 
 .content a{
   align-self: flex-end;
-  margin: 0 25px;
+  position: absolute;
+  bottom: 0;
+  margin: 25px;
 }
 
 #why{
@@ -156,6 +160,5 @@ footer{
 
 #logout-button{
   align-self: self-end;
-
   margin: 25px;
 }
