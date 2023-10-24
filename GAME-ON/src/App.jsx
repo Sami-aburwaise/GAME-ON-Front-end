@@ -12,6 +12,14 @@ import { BASE_URL } from '../Globals'
 import Sessions from './components/Sessions'
 import UserProfile from './pages/UserProfile'
 
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark'
+  }
+})
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -66,18 +74,21 @@ const App = () => {
 
   return (
     <div id="app">
-      <Nav user={user} />
-      <Routes>
-        <Route path={'/gamesession'} element={<Sessions user={user} />} />
-        <Route path="/" element={<Home coaches={coaches} user={user} />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/signin" element={<Signin setUser={setUser} />} />
-        <Route
-          path="/profile"
-          element={<UserProfile user={user} setUser={setUser} />}
-        />
-      </Routes>
-      <Footer />
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <Nav user={user} />
+        <Routes>
+          <Route path={'/gamesession'} element={<Sessions user={user} coaches={coaches} />} />
+          <Route path="/" element={<Home coaches={coaches} user={user} />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin setUser={setUser} />} />
+          <Route
+            path="/profile"
+            element={<UserProfile user={user} setUser={setUser} coaches={coaches} />}
+          />
+        </Routes>
+        <Footer />
+      </ThemeProvider>
     </div>
   )
 }

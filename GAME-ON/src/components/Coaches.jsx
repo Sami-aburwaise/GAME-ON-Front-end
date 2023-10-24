@@ -28,13 +28,17 @@ const Coaches = ({ coaches, setCoach }) => {
         >
           <h2>{coach.name}</h2>
           <img src={`${BASE_URL}/${coach.profile_image}`} alt="" />
-          <Rating
-            name="read-only"
-            value={findAvg(coach.reviews)}
-            precision={0.5}
-            readOnly
-            size="large"
-          />
+
+          <div className="rating">
+            <Rating
+              name="read-only"
+              value={findAvg(coach.reviews)}
+              precision={0.5}
+              readOnly
+              size="large"
+            />
+            <h2>({coach.reviews.length})</h2>
+          </div>
         </div>
       ))}
     </div>
