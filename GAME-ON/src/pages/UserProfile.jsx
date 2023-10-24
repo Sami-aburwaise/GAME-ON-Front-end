@@ -13,7 +13,7 @@ import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AlarmIcon from '@mui/icons-material/Alarm'
 
-const UserProfile = ({ user, setUser }) => {
+const UserProfile = ({ user, setUser, coaches }) => {
   const [userInfo, setUserInfo] = useState(null)
   const [message, setMessage] = useState('')
   const [selectedSession, setSelectedSession] = useState(null)
@@ -102,7 +102,7 @@ const UserProfile = ({ user, setUser }) => {
                         color="secondary"
                         aria-label="add an alarm"
                         size="large"
-                        onClick={()=>editSession(session)}
+                        onClick={() => editSession(session)}
                       >
                         <AlarmIcon />
                       </IconButton>
@@ -120,7 +120,13 @@ const UserProfile = ({ user, setUser }) => {
               )
           )}
         </table>
-        {selectedSession && <Sessions user={user} sessionToEdit={selectedSession}/>}
+        {selectedSession && (
+          <Sessions
+            user={user}
+            sessionToEdit={selectedSession}
+            coaches={coaches}
+          />
+        )}
       </div>
     )
   )

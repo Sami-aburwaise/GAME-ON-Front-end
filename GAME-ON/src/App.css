@@ -152,8 +152,20 @@ footer{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+}
+
+.full-page form{
+  height: 100vh;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+form button{
+  align-self: flex-end;
 }
 
 #logout-button{
@@ -164,3 +176,4 @@ footer{
 .selector{
   font-size: 100px;
 }
+

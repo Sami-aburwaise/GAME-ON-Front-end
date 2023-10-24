@@ -78,13 +78,13 @@ const App = () => {
         <CssBaseline />
         <Nav user={user} />
         <Routes>
-          <Route path={'/gamesession'} element={<Sessions user={user} />} />
+          <Route path={'/gamesession'} element={<Sessions user={user} coaches={coaches} />} />
           <Route path="/" element={<Home coaches={coaches} user={user} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin setUser={setUser} />} />
           <Route
             path="/profile"
-            element={<UserProfile user={user} setUser={setUser} />}
+            element={<UserProfile user={user} setUser={setUser} coaches={coaches} />}
           />
         </Routes>
         <Footer />
