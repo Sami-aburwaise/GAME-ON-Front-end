@@ -13,8 +13,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import Button from '@mui/material/Button'
 
-
-const Sessions = ({ user, coaches, sessionToEdit }) => {
+const Sessions = ({ user, coaches, sessionToEdit, setSelectedSession }) => {
   const [games, setGames] = useState([
     'Roblox',
     'Call of duty',
@@ -60,7 +59,6 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
   }
 
   if (sessionToEdit) {
-    console.log('edit')
     startingFormState = sessionToEdit
   }
 
@@ -88,9 +86,9 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(formState)
     bookSession()
     setFormState(startingFormState)
+    setSelectedSession(null)
     navigate('/profile')
   }
 

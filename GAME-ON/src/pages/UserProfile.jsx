@@ -8,10 +8,10 @@ moment().format()
 
 import Button from '@mui/material/Button'
 
-import Stack from '@mui/material/Stack'
 import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
-import AlarmIcon from '@mui/icons-material/Alarm'
+import EditCalendarIcon from '@mui/icons-material/EditCalendar'
+import ThumbsUpDownIcon from '@mui/icons-material/ThumbsUpDown'
 
 const UserProfile = ({ user, setUser, coaches }) => {
   const [userInfo, setUserInfo] = useState(null)
@@ -50,7 +50,7 @@ const UserProfile = ({ user, setUser, coaches }) => {
 
   useEffect(() => {
     handleUser()
-  }, [message])
+  }, [message, selectedSession])
 
   return (
     userInfo && (
@@ -63,7 +63,6 @@ const UserProfile = ({ user, setUser, coaches }) => {
         >
           logout
         </Button>
-        <h2>{message}</h2>
 
         <div className="userInfo">
           <h2>Profile Details</h2>
@@ -90,45 +89,59 @@ const UserProfile = ({ user, setUser, coaches }) => {
               <th>Date</th>
               <th>Session Type</th>
               <th>Coach</th>
+              <th>Status</th>
             </tr>
           </tbody>
 
-          {userInfo.data.map(
-            (session) =>
-              moment().isBefore(session.date) && (
-                <tbody key={session._id}>
-                  <tr>
-                    <td className="details">{session.game}</td>
-                    <td className="details">{moment(session.date).format('llll')}</td>
-                    <td className="details">{session.sessionType}</td>
-                    <td className="details">{session.coach}</td>
-                    <td>
-                      <IconButton
-                        color="secondary"
-                        aria-label="add an alarm"
-                        size="large"
-                        onClick={() => editSession(session)}
-                      >
-                        <AlarmIcon />
-                      </IconButton>
-                      <IconButton
-                        aria-label="delete"
-                        size="large"
-                        color="error"
-                        onClick={() => deleteSession(session._id)}
-                      >
-                        <DeleteIcon fontSize="large" />
-                      </IconButton>
-                    </td>
-                  </tr>
-                </tbody>
-              )
-          )}
+          {userInfo.data.map((session) => (
+            <tbody key={session._id}>
+              <tr>
+                <td className="details">{session.game}</td>
+                <td className="details">
+                  {moment(session.date).format('llll')}
+                </td>
+                <td className="details">{session.sessionType}</td>
+                <td className="details">{session.coach}</td>
+                {moment().isBefore(session.date) ? (
+                  <td>
+                    <IconButton
+                      color="secondary"
+                      aria-label="add an alarm"
+                      size="large"
+                      onClick={() => editSession(session)}
+                    >
+                      <EditCalendarIcon />
+                    </IconButton>
+                    <IconButton
+                      aria-label="delete"
+                      size="large"
+                      color="error"
+                      onClick={() => deleteSession(session._id)}
+                    >
+                      <DeleteIcon fontSize="large" />
+                    </IconButton>
+                  </td>
+                ) : (
+                  <td>
+                    <IconButton
+                      aria-label="delete"
+                      size="large"
+                      color="success"
+                      onClick={() => deleteSession(session._id)}
+                    >
+                      <ThumbsUpDownIcon fontSize="large" />
+                    </IconButton>
+                  </td>
+                )}
+              </tr>
+            </tbody>
+          ))}
         </table>
         {selectedSession && (
           <Sessions
             user={user}
             sessionToEdit={selectedSession}
+            setSelectedSession={setSelectedSession}
             coaches={coaches}
           />
         )}
