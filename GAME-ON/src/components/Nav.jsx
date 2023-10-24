@@ -6,6 +6,7 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
+import PersonIcon from '@mui/icons-material/Person'
 
 const Nav = ({ user }) => {
   return (
@@ -35,7 +36,7 @@ const Nav = ({ user }) => {
         </NavLink>
       ) : (
         <NavLink to="/signin">
-          <h3>sign In</h3>
+          <PersonIcon fontSize="large" />
         </NavLink>
       )}
     </header>

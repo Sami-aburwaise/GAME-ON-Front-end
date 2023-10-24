@@ -97,6 +97,7 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
   return (
     <div className="full-page">
       <form>
+        <h1>Choose your game</h1>
         <ToggleButtonGroup
           color="primary"
           value={formState.game}
@@ -119,6 +120,7 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
           ))}
         </ToggleButtonGroup>
 
+        <h1>Session date</h1>
         <div className="date">
           <LocalizationProvider dateAdapter={AdapterDayjs} mode="dark">
             <DateTimePicker
@@ -128,6 +130,7 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
           </LocalizationProvider>
         </div>
 
+        <h1>Session type</h1>
         <div className="sessionType">
           <ToggleButtonGroup
             color="primary"
@@ -156,6 +159,7 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
           <h4>{selectedSessionType.description}</h4>
         </div>
 
+        <h1>Choose your coach</h1>
         <div className="coaches-select">
           <ToggleButtonGroup
             color="primary"
