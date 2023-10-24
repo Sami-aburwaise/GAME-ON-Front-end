@@ -7,8 +7,6 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 
-
-
 const Nav = ({ user }) => {
   return (
     <header>
@@ -18,16 +16,16 @@ const Nav = ({ user }) => {
         </NavLink>
         <nav>
           <a href="/#Book-session">
-            <h3>Book session</h3>
+            <h3>Book Session</h3>
           </a>
           <a href="/#our-coaches">
-            <h3>our coaches</h3>
+            <h3>Our Coaches</h3>
           </a>
           <a href="/#why">
             <h3>Why GAME ON?</h3>
           </a>
           <a href="/#about">
-            <h3>about</h3>
+            <h3>About</h3>
           </a>
         </nav>
       </div>

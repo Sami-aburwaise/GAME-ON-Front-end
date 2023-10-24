@@ -13,6 +13,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import Button from '@mui/material/Button'
 
+
 const Sessions = ({ user, coaches, sessionToEdit }) => {
   const [games, setGames] = useState([
     'Roblox',
@@ -90,9 +91,10 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
     console.log(formState)
     bookSession()
     setFormState(startingFormState)
+    navigate('/profile')
   }
 
-  return user ? (
+  return (
     <div className="full-page">
       <form>
         <ToggleButtonGroup
@@ -188,14 +190,6 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
         </Button>
       </form>
     </div>
-  ) : (
-    <button
-      onClick={() => {
-        navigate('/signin')
-      }}
-    >
-      Sign In
-    </button>
   )
 }
 

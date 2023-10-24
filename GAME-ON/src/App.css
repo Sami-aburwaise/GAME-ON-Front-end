@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
+
+
+
 html, body,#app,#root{
   margin: 0;
   position: relative;
@@ -30,12 +35,15 @@ header .header{
   width: 100%;
   display: flex;
   align-items: center;
+  font-family: 'Teko', sans-serif;
+  padding: 30px;
 }
 
 nav{
   display: flex;
   justify-content: space-evenly;
   width: 70%;
+  font-family: 'Teko', sans-serif;
 }
 
 header a{
@@ -66,9 +74,19 @@ section h1{
 }
 
 .content h2{
-  font-size: 50px;
+  font-size: 80px;
   margin: 10px;
   text-align: center;
+  font-family: 'Teko', sans-serif;
+
+}
+
+.content h1{
+  font-size: 100px;
+  margin: 10px;
+  text-align: center;
+  font-family: 'Teko', sans-serif;
+
 }
 
 section p{
@@ -154,6 +172,7 @@ footer{
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
 }
 
 .full-page form{
@@ -170,10 +189,43 @@ form button{
 
 #logout-button{
   align-self: self-end;
-  margin: 25px;
+  margin: 100px;
+  position: absolute;
+  top:0;
 }
 
-.selector{
-  font-size: 100px;
+.userInfo {
+  padding: 20px;
+  justify-content: space-evenly;
+  font-size: 30px;
 }
+
+.Schedule {
+  /* padding: 20px; */
+  grid: 20px;
+}
+
+td, th {
+  border: solid black;
+  
+}
+
+.details {
+  padding-top: 10px;
+}
+
+.userInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+justify-content: left;
+}
+
+.userInfo h2 {
+  align-self: flex-start;
+  padding-left: 20px;
+}
+
+
 

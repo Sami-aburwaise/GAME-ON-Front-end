@@ -64,22 +64,26 @@ const UserProfile = ({ user, setUser, coaches }) => {
           logout
         </Button>
         <h2>{message}</h2>
-        <div>
-          <h3>
-            Name: {userInfo.firstName}
-            {userInfo.lastName}
-          </h3>
+
+        <div className="userInfo">
+          <h2>Profile Details</h2>
+          <div>
+            <h4>
+              Name: {userInfo.firstName} {userInfo.lastName}
+            </h4>
+          </div>
+          <div>
+            <h4>Email: {userInfo.emailAddress}</h4>
+          </div>
+          <div>
+            <h4>Age: {userInfo.age}</h4>
+          </div>
+          <div>
+            <h4>Discord: {userInfo.discordAccount}</h4>
+          </div>
         </div>
-        <div>
-          <h3>Email: {userInfo.emailAddress}</h3>
-        </div>
-        <div>
-          <h3>Age: {userInfo.age}</h3>
-        </div>
-        <div>
-          <h3>Discord: {userInfo.discordAccount}</h3>
-        </div>
-        <table>
+
+        <table className="Schedule">
           <tbody>
             <tr>
               <th>Game</th>
@@ -88,15 +92,16 @@ const UserProfile = ({ user, setUser, coaches }) => {
               <th>Coach</th>
             </tr>
           </tbody>
+
           {userInfo.data.map(
             (session) =>
               moment().isBefore(session.date) && (
                 <tbody key={session._id}>
                   <tr>
-                    <td>{session.game}</td>
-                    <td>{moment(session.date).format('llll')}</td>
-                    <td>{session.sessionType}</td>
-                    <td>{session.coach}</td>
+                    <td className="details">{session.game}</td>
+                    <td className="details">{moment(session.date).format('llll')}</td>
+                    <td className="details">{session.sessionType}</td>
+                    <td className="details">{session.coach}</td>
                     <td>
                       <IconButton
                         color="secondary"

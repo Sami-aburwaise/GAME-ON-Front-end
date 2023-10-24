@@ -12,6 +12,7 @@ import { BASE_URL } from '../Globals'
 import Sessions from './components/Sessions'
 import UserProfile from './pages/UserProfile'
 
+
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 
@@ -26,18 +27,16 @@ const App = () => {
 
   const Client = axios.create({ BASE_URL })
 
-  // Intercepts every request axios makes
   Client.interceptors.request.use(
     (config) => {
-      // Reads the token in localStorage
+      //This would read the token that is stored in local storage
       const token = localStorage.getItem('token')
-      // if the token exists, we set the authorization header
+      //if statement where if there is a token, it would set the authorization heade
       if (token) {
         config.headers['authorization'] = `Bearer ${token}`
         console.log(token)
       }
-      return config // We return the new config if the token exists or the default config if no token exists.
-      // Provides the token to each request that passes through axios
+      return config
     },
     (error) => Promise.reject(error)
   )
