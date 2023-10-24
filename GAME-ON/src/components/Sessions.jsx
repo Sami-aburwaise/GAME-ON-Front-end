@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../Globals'
 import axios from 'axios'
+import moment from 'moment'
+moment().format()
 
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
@@ -18,7 +20,10 @@ const Sessions = ({ user, coaches, sessionToEdit, setSelectedSession }) => {
     'Roblox',
     'Call of duty',
     'Fortnite',
-    'Rainbow Six Siege'
+    'Rainbow Six Siege',
+    'Minecraft',
+    'Blox fruit',
+    'CSGO'
   ])
   const [sessionTypes, setSessionType] = useState([
     {
@@ -53,7 +58,7 @@ const Sessions = ({ user, coaches, sessionToEdit, setSelectedSession }) => {
   let startingFormState = {
     game: '',
     date: '',
-    sessionType: '',
+    sessionType: 'Standard Training',
     coach: '',
     userId: user.id
   }
@@ -66,7 +71,7 @@ const Sessions = ({ user, coaches, sessionToEdit, setSelectedSession }) => {
 
   const handleChange = (event) => {
     event.preventDefault()
-    console.log(event.target.value)
+    console.log(formState)
     setFormState({ ...formState, [event.target.id]: event.target.value })
   }
 
@@ -88,7 +93,7 @@ const Sessions = ({ user, coaches, sessionToEdit, setSelectedSession }) => {
     event.preventDefault()
     bookSession()
     setFormState(startingFormState)
-    setSelectedSession(null)
+    setSelectedSession && setSelectedSession(null)
     navigate('/profile')
   }
 
@@ -120,10 +125,11 @@ const Sessions = ({ user, coaches, sessionToEdit, setSelectedSession }) => {
 
         <h1>Session date</h1>
         <div className="date">
-          <LocalizationProvider dateAdapter={AdapterDayjs} mode="dark">
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateTimePicker
               onChange={(event) => handleDate(event)}
               defaultValue={dayjs(formState.date)}
+              minDate={dayjs(moment().add(1, 'days'))}
             />
           </LocalizationProvider>
         </div>
@@ -166,19 +172,22 @@ const Sessions = ({ user, coaches, sessionToEdit, setSelectedSession }) => {
             aria-label="Platform"
             size="large"
           >
-            {coaches.map((coach) => (
-              <ToggleButton
-                key={coach.name}
-                id="coach"
-                size="large"
-                value={coach.name}
-                onClick={(event) => {
-                  handleChange(event)
-                }}
-              >
-                {coach.name}
-              </ToggleButton>
-            ))}
+            {coaches.map(
+              (coach) =>
+                coach.games.includes(formState.game) && (
+                  <ToggleButton
+                    key={coach.name}
+                    id="coach"
+                    size="large"
+                    value={coach.name}
+                    onClick={(event) => {
+                      handleChange(event)
+                    }}
+                  >
+                    {coach.name}
+                  </ToggleButton>
+                )
+            )}
           </ToggleButtonGroup>
         </div>
 
