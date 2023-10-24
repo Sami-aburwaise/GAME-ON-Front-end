@@ -3,30 +3,28 @@ import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../Globals'
 import axios from 'axios'
 
-const Sessions = ({ user }) => {
+const Sessions = ({ user, sessionToEdit }) => {
   let navigate = useNavigate()
-
   useEffect(() => {
     if (!user) {
       navigate('/signin')
     }
   }, [])
 
-  const startingFormState = {
+  let startingFormState = {
     game: '',
     date: '',
     sessionType: '',
-    coach: '',
+    coach: 'Ali',
     userId: user.id
   }
 
-  const [formState, setFormState] = useState({
-    game: '',
-    date: '',
-    sessionType: '',
-    coach: 'ali',
-    userId: user.id
-  })
+  if (sessionToEdit) {
+    console.log('edit')
+    startingFormState = sessionToEdit
+  }
+
+  const [formState, setFormState] = useState(startingFormState)
 
   const handleChange = (event) => {
     event.preventDefault()
@@ -34,10 +32,13 @@ const Sessions = ({ user }) => {
   }
 
   const bookSession = async () => {
-    const response = await axios.post(
-      `${BASE_URL}/gamesession/create`,
-      formState
-    )
+    const response = sessionToEdit
+      ? await axios.post(
+          `${BASE_URL}/gamesession/edit/${sessionToEdit._id}`,
+          formState
+        )
+      : await axios.post(`${BASE_URL}/gamesession/create`, formState)
+
     console.log(formState)
     console.log(response)
   }
