@@ -8,11 +8,9 @@ html, body,#app,#root{
   position: relative;
   height: 100%;
   color: rgb(240, 240, 240);
-  background-color: rgb(63, 63, 63);
+  background-color: rgb(48, 48, 48);
 
 }
-
-
 
 
 header{
@@ -169,12 +167,24 @@ footer{
 }
 
 .full-page{
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
+}
+
+.full-page form{
+  height: 100vh;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+form button{
+  align-self: flex-end;
 }
 
 #logout-button{
@@ -216,3 +226,6 @@ justify-content: left;
   align-self: flex-start;
   padding-left: 20px;
 }
+
+
+

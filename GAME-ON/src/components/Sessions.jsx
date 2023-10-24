@@ -3,10 +3,55 @@ import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../Globals'
 import axios from 'axios'
 
-const Sessions = ({ user }) => {
-  let navigate = useNavigate()
+import ToggleButton from '@mui/material/ToggleButton'
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 
-  const startingFormState = {
+import dayjs from 'dayjs'
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
+import Button from '@mui/material/Button'
+
+
+const Sessions = ({ user, coaches, sessionToEdit }) => {
+  const [games, setGames] = useState([
+    'Roblox',
+    'Call of duty',
+    'Fortnite',
+    'Rainbow Six Siege'
+  ])
+  const [sessionTypes, setSessionType] = useState([
+    {
+      type: 'Standard Training',
+      price: '35 BHD',
+      description:
+        'Esports veterans who have competed against some of the greatest talent in their respective games and are recognized for their success on global competition stages. They have extensive coaching experience at the highest levels of play.'
+    },
+    {
+      type: 'Advanced Training',
+      price: '60 BHD',
+      description:
+        "Trained experts who've earned a distinguished place within the esports community through extensive experience coaching national teams and the next generation of esports pros. These Sensei are committed coaches devoted to coaching students and improving play at all ranks"
+    },
+    {
+      type: 'Godly Training',
+      price: '100 BHD',
+      description:
+        'Esports Gods who have competed against some of the greatest talent in their respective games and are recognized for their success on global competition stages. They have extensive coaching experience at the highest levels of play.'
+    }
+  ])
+  const [selectedSessionType, setselectedSessionType] = useState(
+    sessionTypes[0]
+  )
+  let navigate = useNavigate()
+  useEffect(() => {
+    if (!user) {
+      navigate('/signin')
+    }
+  }, [])
+
+  let startingFormState = {
     game: '',
     date: '',
     sessionType: '',
@@ -14,31 +59,35 @@ const Sessions = ({ user }) => {
     userId: user.id
   }
 
-  const [formState, setFormState] = useState({
-    game: '',
-    date: '',
-    sessionType: '',
-    coach: 'ali',
-    userId: user.id
-  })
+  if (sessionToEdit) {
+    console.log('edit')
+    startingFormState = sessionToEdit
+  }
+
+  const [formState, setFormState] = useState(startingFormState)
 
   const handleChange = (event) => {
     event.preventDefault()
+    console.log(event.target.value)
     setFormState({ ...formState, [event.target.id]: event.target.value })
   }
 
+  const handleDate = (event) => {
+    console.log(event.$d)
+    setFormState({ ...formState, date: event.$d })
+  }
+
   const bookSession = async () => {
-    const response = await axios.post(
-      `${BASE_URL}/gamesession/create`,
-      formState
-    )
-    console.log(formState)
-    console.log(response)
+    const response = sessionToEdit
+      ? await axios.post(
+          `${BASE_URL}/gamesession/edit/${sessionToEdit._id}`,
+          formState
+        )
+      : await axios.post(`${BASE_URL}/gamesession/create`, formState)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-
     console.log(formState)
     bookSession()
     setFormState(startingFormState)
@@ -48,107 +97,97 @@ const Sessions = ({ user }) => {
   return (
     <div className="full-page">
       <form>
-        <h1>Choose Your Game</h1>
-        <div className="buttons">
-          <button
-            type="button"
-            onClick={(event) => handleChange(event)}
-            id="game"
-            value="Call of Duty"
-          >
-            Call of Duty
-          </button>
-          <button
-            type="button"
-            onClick={(event) => handleChange(event)}
-            id="game"
-            value="Roblox"
-          >
-            Roblox
-          </button>
-          <button
-            type="button"
-            onClick={(event) => handleChange(event)}
-            id="game"
-            value="Fortnite"
-          >
-            Fortnite
-          </button>
-          <button
-            type="button"
-            onClick={(event) => handleChange(event)}
-            id="game"
-            value="Rainbow Six Siege"
-          >
-            Rainbow Six Siege
-          </button>
+        <ToggleButtonGroup
+          color="primary"
+          value={formState.game}
+          exclusive
+          aria-label="Platform"
+          size="large"
+        >
+          {games.map((game) => (
+            <ToggleButton
+              key={game}
+              id="game"
+              size="large"
+              value={game}
+              onClick={(event) => {
+                handleChange(event)
+              }}
+            >
+              {game}
+            </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
+
+        <div className="date">
+          <LocalizationProvider dateAdapter={AdapterDayjs} mode="dark">
+            <DateTimePicker
+              onChange={(event) => handleDate(event)}
+              defaultValue={dayjs(formState.date)}
+            />
+          </LocalizationProvider>
         </div>
 
-        <div className="date"></div>
         <div className="sessionType">
-          <h3>Standard Training</h3>
-          <h4>35 BHD</h4>
-          <p>
-            Esports veterans who have competed against some of the greatest
-            talent in their respective games and are recognized for their
-            success on global competition stages. They have extensive coaching
-            experience at the highest levels of play.
-          </p>
-          <br />
-          <button
-            onClick={(event) => handleChange(event)}
-            id="sessionType"
-            value="Standard Training"
+          <ToggleButtonGroup
+            color="primary"
+            value={formState.sessionType}
+            exclusive
+            aria-label="Platform"
+            size="large"
           >
-            Book Session
-          </button>
-          <h3>Advanced Training</h3>
-          <h4>60 BHD</h4>
-          <p>
-            Trained experts who've earned a distinguished place within the
-            esports community through extensive experience coaching national
-            teams and the next generation of esports pros. These Sensei are
-            committed coaches devoted to coaching students and improving play at
-            all ranks
-          </p>
-          <br />
-          <button
-            onClick={(event) => handleChange(event)}
-            id="sessionType"
-            value="Advanced Training"
-          >
-            Book Session
-          </button>
-          <h3>Godly Training</h3>
-          <h4>100 BHD</h4>
-          <p>
-            Esports Gods who have competed against some of the greatest talent
-            in their respective games and are recognized for their success on
-            global competition stages. They have extensive coaching experience
-            at the highest levels of play.
-          </p>
-          <br />
-          <button
-            onClick={(event) => handleChange(event)}
-            id="sessionType"
-            value="Godly Training"
-          >
-            Book Session
-          </button>
-          <br />
-          <label htmlFor="date">Choose your Date</label>
-          <br />
-          <input
-            type="date"
-            id="date"
-            readOnly={false}
-            onChange={handleChange}
-          />
+            {sessionTypes.map((sessionType) => (
+              <ToggleButton
+                key={sessionType.type}
+                id="sessionType"
+                size="large"
+                value={sessionType.type}
+                onClick={(event) => {
+                  setselectedSessionType(sessionType)
+                  handleChange(event)
+                }}
+              >
+                {sessionType.type}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+
+          <h3>{selectedSessionType.price}</h3>
+          <h4>{selectedSessionType.description}</h4>
         </div>
 
-        <button type="submit" onClick={handleSubmit} className="submitBtn">
+        <div className="coaches-select">
+          <ToggleButtonGroup
+            color="primary"
+            value={formState.coach}
+            exclusive
+            aria-label="Platform"
+            size="large"
+          >
+            {coaches.map((coach) => (
+              <ToggleButton
+                key={coach.name}
+                id="coach"
+                size="large"
+                value={coach.name}
+                onClick={(event) => {
+                  handleChange(event)
+                }}
+              >
+                {coach.name}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </div>
+
+        <Button
+          variant="contained"
+          color="success"
+          size="large"
+          onClick={handleSubmit}
+        >
           Confirm Booking
-        </button>
+        </Button>
       </form>
     </div>
   )

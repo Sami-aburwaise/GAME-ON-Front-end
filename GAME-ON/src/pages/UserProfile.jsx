@@ -11,10 +11,12 @@ import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
 import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
+import AlarmIcon from '@mui/icons-material/Alarm'
 
-const UserProfile = ({ user, setUser }) => {
+const UserProfile = ({ user, setUser, coaches }) => {
   const [userInfo, setUserInfo] = useState(null)
   const [message, setMessage] = useState('')
+  const [selectedSession, setSelectedSession] = useState(null)
   const navigate = useNavigate()
   moment.locale('en-gb')
 
@@ -28,6 +30,10 @@ const UserProfile = ({ user, setUser }) => {
     } else {
       navigate('/signin')
     }
+  }
+
+  const editSession = (session) => {
+    setSelectedSession(session)
   }
 
   const deleteSession = async (id) => {
@@ -86,29 +92,46 @@ const UserProfile = ({ user, setUser }) => {
               <th>Coach</th>
             </tr>
           </tbody>
-          {userInfo.data.map((session) => (
-            <tbody key={session._id}>
-              <tr>
-                <td className="details">{session.game}</td>
-                <td className="details">
-                  {moment(session.date).format('llll')}
-                </td>
-                <td className="details">{session.sessionType}</td>
-                <td className="details">{session.coach}</td>
-                <td>
-                  <IconButton
-                    aria-label="delete"
-                    size="large"
-                    color="error"
-                    onClick={() => deleteSession(session._id)}
-                  >
-                    <DeleteIcon fontSize="small" />
-                  </IconButton>
-                </td>
-              </tr>
-            </tbody>
-          ))}
+
+          {userInfo.data.map(
+            (session) =>
+              moment().isBefore(session.date) && (
+                <tbody key={session._id}>
+                  <tr>
+                    <td className="details">{session.game}</td>
+                    <td className="details">{moment(session.date).format('llll')}</td>
+                    <td className="details">{session.sessionType}</td>
+                    <td className="details">{session.coach}</td>
+                    <td>
+                      <IconButton
+                        color="secondary"
+                        aria-label="add an alarm"
+                        size="large"
+                        onClick={() => editSession(session)}
+                      >
+                        <AlarmIcon />
+                      </IconButton>
+                      <IconButton
+                        aria-label="delete"
+                        size="large"
+                        color="error"
+                        onClick={() => deleteSession(session._id)}
+                      >
+                        <DeleteIcon fontSize="large" />
+                      </IconButton>
+                    </td>
+                  </tr>
+                </tbody>
+              )
+          )}
         </table>
+        {selectedSession && (
+          <Sessions
+            user={user}
+            sessionToEdit={selectedSession}
+            coaches={coaches}
+          />
+        )}
       </div>
     )
   )
