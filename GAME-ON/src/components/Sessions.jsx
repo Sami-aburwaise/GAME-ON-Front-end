@@ -6,12 +6,6 @@ import axios from 'axios'
 const Sessions = ({ user }) => {
   let navigate = useNavigate()
 
-  useEffect(() => {
-    if (!user) {
-      navigate('/signin')
-    }
-  }, [])
-
   const startingFormState = {
     game: '',
     date: '',
@@ -25,7 +19,7 @@ const Sessions = ({ user }) => {
     date: '',
     sessionType: '',
     coach: 'ali',
-    userId: user
+    userId: user.id
   })
 
   const handleChange = (event) => {
@@ -34,7 +28,7 @@ const Sessions = ({ user }) => {
   }
 
   const bookSession = async () => {
-    await axios.post(`${BASE_URL}/gamesession`, formState)
+    await axios.post(`${BASE_URL}/gamesession/create`, formState)
   }
 
   const handleSubmit = (event) => {
@@ -45,7 +39,7 @@ const Sessions = ({ user }) => {
     setFormState(startingFormState)
   }
 
-  return (
+  return user ? (
     <div className="full-page">
       <form>
         <div className="buttons">
@@ -144,6 +138,11 @@ const Sessions = ({ user }) => {
           Confirm Booking
         </button>
       </form>
+    </div>
+  ) : (
+    <div>
+      <h2>Please Sign In to Book Your Session</h2>
+      <button onClick={() => navigate('/signin')}>Sign In</button>
     </div>
   )
 }
