@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom'
-
 import * as React from 'react'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
@@ -8,7 +7,9 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 
-const Nav = () => {
+
+
+const Nav = ({ user }) => {
   return (
     <header>
       <div className="header">
@@ -16,23 +17,29 @@ const Nav = () => {
           <h1>GAME ON</h1>
         </NavLink>
         <nav>
-          <a href="#Book-session">
+          <a href="/#Book-session">
             <h3>Book session</h3>
           </a>
-          <a href="#our-coaches">
+          <a href="/#our-coaches">
             <h3>our coaches</h3>
           </a>
-          <a href="#why">
+          <a href="/#why">
             <h3>Why GAME ON?</h3>
           </a>
-          <a href="#about">
+          <a href="/#about">
             <h3>about</h3>
           </a>
         </nav>
       </div>
-      <NavLink to="/signin">
-        <h3>sign In</h3>
-      </NavLink>
+      {user ? (
+        <NavLink to="/profile">
+          <h3>{user.firstName}</h3>
+        </NavLink>
+      ) : (
+        <NavLink to="/signin">
+          <h3>sign In</h3>
+        </NavLink>
+      )}
     </header>
   )
 }

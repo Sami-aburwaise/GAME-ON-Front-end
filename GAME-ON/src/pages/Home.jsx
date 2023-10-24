@@ -7,7 +7,7 @@ import * as React from 'react'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 
-const Home = ({ coaches }) => {
+const Home = ({ coaches, user }) => {
   const [coach, setCoach] = useState(null)
 
   return (
@@ -19,7 +19,7 @@ const Home = ({ coaches }) => {
         <div className="content">
           <h1>GAME ON!</h1>
           <h2>Get pro</h2>
-          <NavLink to="/gamesession">
+          <NavLink to={'/gamesession'}>
             <Button variant="contained" color="success" size="large">
               Book a Session
             </Button>

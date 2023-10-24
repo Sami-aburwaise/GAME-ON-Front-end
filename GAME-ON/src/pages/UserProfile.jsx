@@ -1,33 +1,62 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../Globals'
 import Sessions from '../components/Sessions'
+import moment from 'moment'
+moment().format()
 
-const UserProfile = ({ user }) => {
+import Button from '@mui/material/Button'
+
+import Stack from '@mui/material/Stack'
+import IconButton from '@mui/material/IconButton'
+import DeleteIcon from '@mui/icons-material/Delete'
+
+const UserProfile = ({ user, setUser }) => {
   const [userInfo, setUserInfo] = useState(null)
   const [message, setMessage] = useState('')
+  const navigate = useNavigate()
+  moment.locale('en-gb')
 
   const handleUser = async () => {
-    let response = await axios.get(
-      `${BASE_URL}/profile?userid=${user.data.user.id}`
-    )
-    let sessionResponse = await axios.get(
-      `${BASE_URL}/gamesession/get?userId=${user.data.user.id}`
-    )
-    setUserInfo({ ...response.data, ...sessionResponse })
+    if (user) {
+      let response = await axios.get(`${BASE_URL}/profile?userid=${user.id}`)
+      let sessionResponse = await axios.get(
+        `${BASE_URL}/gamesession/get?userId=${user.id}`
+      )
+      setUserInfo({ ...response.data, ...sessionResponse })
+    } else {
+      navigate('/')
+    }
   }
 
   const deleteSession = async (id) => {
-    let response = await axios.get(`${BASE_URL}/gamesession/${id}`)
+    let response = await axios.get(`${BASE_URL}/gamesession/delete/${id}`)
     setMessage(response.data.msg)
+  }
+
+  const logout = () => {
+    localStorage.removeItem('token')
+    sessionStorage.removeItem('token')
+    setUser(null)
+    navigate('/signin')
   }
 
   useEffect(() => {
     handleUser()
   }, [message])
-  if (userInfo) {
-    return (
+
+  return (
+    userInfo && (
       <div className="full-page">
+        <Button
+          variant="outlined"
+          color="error"
+          id="logout-button"
+          onClick={logout}
+        >
+          logout
+        </Button>
         <h2>{message}</h2>
         <div>
           <h3>
@@ -56,16 +85,19 @@ const UserProfile = ({ user }) => {
           {userInfo.data.map((session) => (
             <tbody key={session._id}>
               <tr>
-                <td>
-                  <h1>asdasd{session.game}</h1>
-                </td>
-                <td>{session.date}</td>
+                <td>{session.game}</td>
+                <td>{moment(session.date).format('llll')}</td>
                 <td>{session.sessionType}</td>
                 <td>{session.coach}</td>
                 <td>
-                  <button onClick={() => deleteSession(session._id)}>
-                    Cancel Session
-                  </button>
+                  <IconButton
+                    aria-label="delete"
+                    size="large"
+                    color="error"
+                    onClick={() => deleteSession(session._id)}
+                  >
+                    <DeleteIcon fontSize="small" />
+                  </IconButton>
                 </td>
               </tr>
             </tbody>
@@ -73,7 +105,7 @@ const UserProfile = ({ user }) => {
         </table>
       </div>
     )
-  }
+  )
 }
 
 export default UserProfile

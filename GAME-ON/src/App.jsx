@@ -12,6 +12,7 @@ import { BASE_URL } from '../Globals'
 import Sessions from './components/Sessions'
 import UserProfile from './pages/UserProfile'
 
+
 const App = () => {
   const [user, setUser] = useState(null)
 
@@ -36,8 +37,8 @@ const App = () => {
   const checkSession = async () => {
     try {
       const response = await Client.get('http://localhost:4000/session')
-      console.log(response)
-      return response.data.id
+      console.log(response.data)
+      return response.data
     } catch (error) {
       throw error
     }
@@ -65,13 +66,16 @@ const App = () => {
 
   return (
     <div id="app">
-      <Nav />
+      <Nav user={user} />
       <Routes>
-        <Route path="/gamesession" element={<Sessions user={user} />} />
-        <Route path="/" element={<Home coaches={coaches} />} />
+        <Route path={'/gamesession'} element={<Sessions user={user} />} />
+        <Route path="/" element={<Home coaches={coaches} user={user} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin setUser={setUser} />} />
-        <Route path="/profile" element={<UserProfile user={user} />} />
+        <Route
+          path="/profile"
+          element={<UserProfile user={user} setUser={setUser} />}
+        />
       </Routes>
       <Footer />
     </div>
