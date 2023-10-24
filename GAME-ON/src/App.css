@@ -167,17 +167,17 @@ footer{
 }
 
 .full-page{
+  margin-top: 25px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
 }
 
 .full-page form{
   height: 100vh;
-  padding: 26px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
