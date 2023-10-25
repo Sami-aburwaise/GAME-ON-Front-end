@@ -51,14 +51,18 @@ const Home = ({ coaches, user }) => {
         </p>
       </section>
       <section id="about">
-        <h1>About GAME ON</h1>
-        <p>
-          GAME ON is a premier esports coaching service that helps gamers of all
-          levels reach their full potential. We offer one-on-one and group
-          coaching sessions with experienced and knowledgeable coaches who can
-          help you improve your skills, learn new strategies, and develop a
-          winning mindset.
-        </p>
+        <div className="content2">
+          <h1>About GAME ON</h1>
+          <br />
+          <br />
+          <p>
+            GAME ON is a premier esports coaching service that helps gamers of
+            all levels reach their full potential. We offer one-on-one and group
+            coaching sessions with experienced and knowledgeable coaches who can
+            help you improve your skills, learn new strategies, and develop a
+            winning mindset.
+          </p>
+        </div>
       </section>
     </main>
   )

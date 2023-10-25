@@ -13,7 +13,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import Button from '@mui/material/Button'
 
-
 const Sessions = ({ user, coaches, sessionToEdit }) => {
   const [games, setGames] = useState([
     'Roblox',
@@ -97,7 +96,7 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
   return (
     <div className="full-page">
       <form>
-        <h1>Choose your game</h1>
+        <h1>Choose Your Game</h1>
         <ToggleButtonGroup
           color="primary"
           value={formState.game}
@@ -120,7 +119,7 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
           ))}
         </ToggleButtonGroup>
 
-        <h1>Session date</h1>
+        <h1>Session Date</h1>
         <div className="date">
           <LocalizationProvider dateAdapter={AdapterDayjs} mode="dark">
             <DateTimePicker
@@ -130,7 +129,7 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
           </LocalizationProvider>
         </div>
 
-        <h1>Session type</h1>
+        <h1>Session Type</h1>
         <div className="sessionType">
           <ToggleButtonGroup
             color="primary"
@@ -159,7 +158,7 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
           <h4>{selectedSessionType.description}</h4>
         </div>
 
-        <h1>Choose your coach</h1>
+        <h1>Choose Your Coach</h1>
         <div className="coaches-select">
           <ToggleButtonGroup
             color="primary"

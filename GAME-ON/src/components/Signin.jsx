@@ -32,7 +32,7 @@ const Signin = ({ setUser }) => {
 
   return (
     <div className="full-page">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="signupform">
         <h1 className="signinh1">Sign in</h1>
         <br />
         <label htmlFor="emailAddress" className="signinlabel">

@@ -33,7 +33,10 @@ const Signup = () => {
   return (
     <div className="full-page">
       <form onSubmit={handleSubmit} className="signupform">
-        <h1>Sign Up</h1>
+        <h1 className="signinh1">Sign Up</h1>
+        <br />
+        <br />
+        <br />
         <label htmlFor="firstName" className="signinlabel">
           First Name
         </label>

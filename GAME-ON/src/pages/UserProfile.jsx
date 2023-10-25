@@ -54,7 +54,7 @@ const UserProfile = ({ user, setUser, coaches }) => {
 
   return (
     userInfo && (
-      <div className="full-page">
+      <div className="full-page" id="profilep">
         <Button
           variant="outlined"
           color="error"
@@ -85,7 +85,7 @@ const UserProfile = ({ user, setUser, coaches }) => {
         {userInfo.data.length !== 0 && (
           <table className="Schedule">
             <tbody>
-              <tr>
+              <tr className="tableformat">
                 <th>Game</th>
                 <th>Date</th>
                 <th>Session Type</th>
