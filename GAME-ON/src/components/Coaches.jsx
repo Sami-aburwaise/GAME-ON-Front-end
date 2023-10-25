@@ -1,10 +1,7 @@
-import { redirect } from 'react-router-dom'
 import { BASE_URL } from '../../Globals'
 
 import * as React from 'react'
-import Box from '@mui/material/Box'
 import Rating from '@mui/material/Rating'
-import Typography from '@mui/material/Typography'
 
 const findAvg = (arr) => {
   let sum = 0
@@ -14,16 +11,15 @@ const findAvg = (arr) => {
   return parseFloat(sum ? (sum /= arr.length).toFixed(2) : 0)
 }
 
-const Coaches = ({ coaches, setCoach }) => {
+const Coaches = ({ coaches, handleClick }) => {
   return (
     <div className="coaches-container">
       {coaches.map((coach) => (
         <div
           key={coach.name}
           className="coach-card"
-          onClick={async () => {
-            await setCoach(coach)
-            location.href = '#coach-profile'
+          onClick={() => {
+            handleClick && handleClick(coach)
           }}
         >
           <h2>{coach.name}</h2>
