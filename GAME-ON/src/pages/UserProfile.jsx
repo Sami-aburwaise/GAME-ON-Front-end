@@ -1,4 +1,5 @@
-import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL, Client } from '../../Globals'
@@ -14,7 +15,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import EditCalendarIcon from '@mui/icons-material/EditCalendar'
 import ThumbsUpDownIcon from '@mui/icons-material/ThumbsUpDown'
 
-const UserProfile = ({ user, setUser, coaches }) => {
+const UserProfile = ({ user, setUser, coaches, notify }) => {
   const [userInfo, setUserInfo] = useState(null)
   const [message, setMessage] = useState('')
   const [selectedSession, setSelectedSession] = useState(null)
@@ -35,6 +36,7 @@ const UserProfile = ({ user, setUser, coaches }) => {
 
   const deleteSession = async (id) => {
     let response = await Client.get(`${BASE_URL}/gamesession/delete/${id}`)
+    notify(response)
     setMessage(response.data.msg)
   }
 
@@ -52,6 +54,7 @@ const UserProfile = ({ user, setUser, coaches }) => {
   return (
     userInfo && (
       <div className="full-page" id="profilep">
+        <ToastContainer toastStyle={{ backgroundColor: 'black' }} />
         <Button
           variant="outlined"
           color="error"
@@ -140,6 +143,7 @@ const UserProfile = ({ user, setUser, coaches }) => {
               sessionToEdit={selectedSession}
               setSelectedSession={setSelectedSession}
               coaches={coaches}
+              notify={notify}
             />
           ) : (
             <AddReview
@@ -147,6 +151,7 @@ const UserProfile = ({ user, setUser, coaches }) => {
               selectedSession={selectedSession}
               setSelectedSession={setSelectedSession}
               coaches={coaches}
+              notify={notify}
             />
           ))}
       </div>

@@ -5,7 +5,13 @@ import Rating from '@mui/material/Rating'
 import Button from '@mui/material/Button'
 import Coaches from './Coaches'
 
-const AddReview = ({ user, selectedSession, setSelectedSession, coaches }) => {
+const AddReview = ({
+  user,
+  selectedSession,
+  setSelectedSession,
+  coaches,
+  notify
+}) => {
   const [coach, setCoach] = useState(
     coaches.filter((obj) => {
       return obj.name == selectedSession.coach
@@ -26,7 +32,7 @@ const AddReview = ({ user, selectedSession, setSelectedSession, coaches }) => {
       formState
     )
     await Client.get(`${BASE_URL}/gamesession/delete/${sessionID}`)
-
+    notify(response)
     setSelectedSession(null)
   }
 
