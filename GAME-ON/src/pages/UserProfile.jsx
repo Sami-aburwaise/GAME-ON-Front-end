@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BASE_URL } from '../../Globals'
+import { BASE_URL, Client } from '../../Globals'
 import Sessions from '../components/Sessions'
 import AddReview from '../components/AddReview'
 import moment from 'moment'
@@ -23,8 +23,8 @@ const UserProfile = ({ user, setUser, coaches }) => {
 
   const handleUser = async () => {
     if (user) {
-      let response = await axios.get(`${BASE_URL}/profile?userid=${user.id}`)
-      let sessionResponse = await axios.get(
+      let response = await Client.get(`${BASE_URL}/profile?userid=${user.id}`)
+      let sessionResponse = await Client.get(
         `${BASE_URL}/gamesession/get?userId=${user.id}`
       )
       setUserInfo({ ...response.data, ...sessionResponse })
@@ -34,7 +34,7 @@ const UserProfile = ({ user, setUser, coaches }) => {
   }
 
   const deleteSession = async (id) => {
-    let response = await axios.get(`${BASE_URL}/gamesession/delete/${id}`)
+    let response = await Client.get(`${BASE_URL}/gamesession/delete/${id}`)
     setMessage(response.data.msg)
   }
 
