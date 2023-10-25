@@ -32,7 +32,7 @@ const CoachProfile = ({ coach }) => {
         <h3>reviews:</h3>
         {coach.reviews.map((reviwe) => (
           <div className="review" key={reviwe._id}>
-            <h4>{reviwe.comment}</h4>
+            <h4>{reviwe.user.firstName + ':  ' + reviwe.comment}</h4>
             <Rating
               className="rating"
               name="read-only"

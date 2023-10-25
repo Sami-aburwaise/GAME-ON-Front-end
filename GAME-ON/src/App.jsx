@@ -25,7 +25,6 @@ const darkTheme = createTheme({
 })
 
 const notify = (response) => {
-  console.log(response)
   response.data.status
     ? toast.success(response.data.msg)
     : toast.error(response.data.msg)
