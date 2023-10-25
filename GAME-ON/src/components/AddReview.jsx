@@ -26,7 +26,6 @@ const AddReview = ({ user, selectedSession, setSelectedSession, coaches }) => {
       formState
     )
     await axios.get(`${BASE_URL}/gamesession/delete/${sessionID}`)
-    console.log(response)
 
     setSelectedSession(null)
   }

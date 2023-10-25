@@ -71,12 +71,10 @@ const Sessions = ({ user, coaches, sessionToEdit, setSelectedSession }) => {
 
   const handleChange = (event) => {
     event.preventDefault()
-    console.log(formState)
     setFormState({ ...formState, [event.target.id]: event.target.value })
   }
 
   const handleDate = (event) => {
-    console.log(event.$d)
     setFormState({ ...formState, date: event.$d })
   }
 
