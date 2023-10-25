@@ -129,7 +129,7 @@ const Sessions = ({ user, coaches, sessionToEdit, setSelectedSession }) => {
             <DateTimePicker
               onChange={(event) => handleDate(event)}
               defaultValue={dayjs(formState.date)}
-              minDate={dayjs(moment().add(1, 'days'))}
+              /*minDate={dayjs(moment().add(1, 'days'))}*/
             />
           </LocalizationProvider>
         </div>

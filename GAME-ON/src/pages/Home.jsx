@@ -10,6 +10,11 @@ import Button from '@mui/material/Button'
 const Home = ({ coaches, user }) => {
   const [coach, setCoach] = useState(null)
 
+  const handleClick = async (coach) => {
+    await setCoach(coach)
+    location.href = '#coach-profile'
+  }
+
   return (
     <main className="home">
       <section id="Book-session">
@@ -28,7 +33,7 @@ const Home = ({ coaches, user }) => {
       </section>
       <section id="our-coaches">
         <h1>Our Coaches</h1>
-        <Coaches coaches={coaches} setCoach={setCoach} />
+        <Coaches coaches={coaches} handleClick={handleClick} />
       </section>
       {coach && <CoachProfile coach={coach} />}
 

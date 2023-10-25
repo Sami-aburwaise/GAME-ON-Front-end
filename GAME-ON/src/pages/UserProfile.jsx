@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../Globals'
 import Sessions from '../components/Sessions'
+import AddReview from '../components/AddReview'
 import moment from 'moment'
 moment().format()
 
@@ -30,10 +31,6 @@ const UserProfile = ({ user, setUser, coaches }) => {
     } else {
       navigate('/signin')
     }
-  }
-
-  const editSession = (session) => {
-    setSelectedSession(session)
   }
 
   const deleteSession = async (id) => {
@@ -108,7 +105,7 @@ const UserProfile = ({ user, setUser, coaches }) => {
                       color="secondary"
                       aria-label="add an alarm"
                       size="large"
-                      onClick={() => editSession(session)}
+                      onClick={() => setSelectedSession(session)}
                     >
                       <EditCalendarIcon />
                     </IconButton>
@@ -127,7 +124,7 @@ const UserProfile = ({ user, setUser, coaches }) => {
                       aria-label="delete"
                       size="large"
                       color="success"
-                      onClick={() => deleteSession(session._id)}
+                      onClick={() => setSelectedSession(session)}
                     >
                       <ThumbsUpDownIcon fontSize="large" />
                     </IconButton>
@@ -137,14 +134,22 @@ const UserProfile = ({ user, setUser, coaches }) => {
             </tbody>
           ))}
         </table>
-        {selectedSession && (
-          <Sessions
-            user={user}
-            sessionToEdit={selectedSession}
-            setSelectedSession={setSelectedSession}
-            coaches={coaches}
-          />
-        )}
+        {selectedSession &&
+          (moment().isBefore(selectedSession.date) ? (
+            <Sessions
+              user={user}
+              sessionToEdit={selectedSession}
+              setSelectedSession={setSelectedSession}
+              coaches={coaches}
+            />
+          ) : (
+            <AddReview
+              user={user}
+              selectedSession={selectedSession}
+              setSelectedSession={setSelectedSession}
+              coaches={coaches}
+            />
+          ))}
       </div>
     )
   )
