@@ -8,7 +8,7 @@ import { Routes, Route } from 'react-router-dom'
 import Signin from './components/Signin'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { BASE_URL } from '../Globals'
+import { BASE_URL, Client } from '../Globals'
 import Sessions from './components/Sessions'
 import UserProfile from './pages/UserProfile'
 
@@ -24,25 +24,11 @@ const darkTheme = createTheme({
 const App = () => {
   const [user, setUser] = useState(null)
 
-  const Client = axios.create({ BASE_URL })
 
-  Client.interceptors.request.use(
-    (config) => {
-      //This would read the token that is stored in local storage
-      const token = localStorage.getItem('token')
-      //if statement where if there is a token, it would set the authorization heade
-      if (token) {
-        config.headers['authorization'] = `Bearer ${token}`
-        console.log(token)
-      }
-      return config
-    },
-    (error) => Promise.reject(error)
-  )
 
   const checkSession = async () => {
     try {
-      const response = await Client.get('http://localhost:4000/session')
+      const response = await Client.get(BASE_URL + '/session')
       return response.data
     } catch (error) {
       throw error
@@ -79,7 +65,12 @@ const App = () => {
             element={<Sessions user={user} coaches={coaches} />}
           />
 
-          <Route path="/" element={<Home coaches={coaches} user={user} getCoaches={getCoaches} />} />
+          <Route
+            path="/"
+            element={
+              <Home coaches={coaches} user={user} getCoaches={getCoaches} />
+            }
+          />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin setUser={setUser} />} />
           <Route

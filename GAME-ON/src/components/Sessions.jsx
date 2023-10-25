@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BASE_URL } from '../../Globals'
+import { BASE_URL, Client } from '../../Globals'
 import axios from 'axios'
 import moment from 'moment'
 moment().format()
@@ -81,11 +81,11 @@ const Sessions = ({ user, coaches, sessionToEdit, setSelectedSession }) => {
 
   const bookSession = async () => {
     const response = sessionToEdit
-      ? await axios.post(
+      ? await Client.post(
           `${BASE_URL}/gamesession/edit/${sessionToEdit._id}`,
           formState
         )
-      : await axios.post(`${BASE_URL}/gamesession/create`, formState)
+      : await Client.post(`${BASE_URL}/gamesession/create`, formState)
   }
 
   const handleSubmit = (event) => {
