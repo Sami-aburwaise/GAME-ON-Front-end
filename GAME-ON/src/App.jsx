@@ -15,16 +15,24 @@ import UserProfile from './pages/UserProfile'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 const darkTheme = createTheme({
   palette: {
     mode: 'dark'
   }
 })
 
+const notify = (response) => {
+  console.log(response)
+  response.data.status
+    ? toast.success(response.data.msg)
+    : toast.error(response.data.msg)
+}
+
 const App = () => {
   const [user, setUser] = useState(null)
-
-
 
   const checkSession = async () => {
     try {
@@ -62,7 +70,7 @@ const App = () => {
         <Routes>
           <Route
             path={'/gamesession'}
-            element={<Sessions user={user} coaches={coaches} />}
+            element={<Sessions user={user} coaches={coaches} notify={notify} />}
           />
 
           <Route
@@ -76,7 +84,12 @@ const App = () => {
           <Route
             path="/profile"
             element={
-              <UserProfile user={user} setUser={setUser} coaches={coaches} />
+              <UserProfile
+                user={user}
+                setUser={setUser}
+                coaches={coaches}
+                notify={notify}
+              />
             }
           />
         </Routes>

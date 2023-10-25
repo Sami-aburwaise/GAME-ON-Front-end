@@ -37,6 +37,53 @@ const Coaches = ({ coaches, handleClick }) => {
           </div>
         </div>
       ))}
+
+      {coaches.map((coach) => (
+        <div
+          key={coach.name}
+          className="coach-card"
+          onClick={() => {
+            handleClick && handleClick(coach)
+          }}
+        >
+          <h2>{coach.name}</h2>
+          <img src={`${BASE_URL}/${coach.profile_image}`} alt="" />
+
+          <div className="rating">
+            <Rating
+              name="read-only"
+              value={findAvg(coach.reviews)}
+              precision={0.5}
+              readOnly
+              size="large"
+            />
+            <h2>({coach.reviews.length})</h2>
+          </div>
+        </div>
+      ))}
+      {coaches.map((coach) => (
+        <div
+          key={coach.name}
+          className="coach-card"
+          onClick={() => {
+            handleClick && handleClick(coach)
+          }}
+        >
+          <h2>{coach.name}</h2>
+          <img src={`${BASE_URL}/${coach.profile_image}`} alt="" />
+
+          <div className="rating">
+            <Rating
+              name="read-only"
+              value={findAvg(coach.reviews)}
+              precision={0.5}
+              readOnly
+              size="large"
+            />
+            <h2>({coach.reviews.length})</h2>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

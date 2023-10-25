@@ -15,8 +15,13 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import Button from '@mui/material/Button'
 
-
-const Sessions = ({ user, coaches, sessionToEdit, setSelectedSession }) => {
+const Sessions = ({
+  user,
+  coaches,
+  sessionToEdit,
+  setSelectedSession,
+  notify
+}) => {
   const [games, setGames] = useState([
     'Roblox',
     'Call of duty',
@@ -86,6 +91,7 @@ const Sessions = ({ user, coaches, sessionToEdit, setSelectedSession }) => {
           formState
         )
       : await Client.post(`${BASE_URL}/gamesession/create`, formState)
+    notify(response)
   }
 
   const handleSubmit = (event) => {
