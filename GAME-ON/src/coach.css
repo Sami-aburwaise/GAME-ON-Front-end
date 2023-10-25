@@ -1,6 +1,5 @@
 .coaches-container{
   display: flex;
-
   width: 100%;
   padding: 25px; 
   overflow: auto;
@@ -28,7 +27,9 @@
 .coach-card img{
   width: 300px;
   height: 300px;
+  margin: 25px;
   object-fit: cover;
+
 }
 
 .coach-card .rating{
