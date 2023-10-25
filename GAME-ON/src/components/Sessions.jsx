@@ -28,7 +28,7 @@ const Sessions = ({
     'Fortnite',
     'Rainbow Six Siege',
     'Minecraft',
-    'Blox fruit',
+    'Apex Legends',
     'CSGO'
   ])
   const [sessionTypes, setSessionType] = useState([

@@ -10,7 +10,6 @@ Client.interceptors.request.use(
     //if statement where if there is a token, it would set the authorization heade
     if (token) {
       config.headers['authorization'] = `Bearer ${token}`
-      console.log(token)
     }
     return config
   },
