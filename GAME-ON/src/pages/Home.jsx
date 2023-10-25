@@ -34,20 +34,18 @@ const Home = ({ coaches, user }) => {
 
       <section id="why">
         <h1>Why GAME ON?</h1>
-        <br />
         <p>
-          <strong>Experienced and Knowledgeable Coaches:</strong> <br /> <br />
+          <strong>Experienced and Knowledgeable Coaches:</strong> <br />
           Our coaches are experts in a variety of esports titles and have a
           proven track record of success.
         </p>
         <p>
-          <strong>Personalized Coaching:</strong> <br /> <br />
+          <strong>Personalized Coaching:</strong> <br />
           We offer one-on-one and group coaching sessions so that you can get
-          the personalized attention you need. Flexible scheduling: We offer a
-          variety of scheduling options to fit your busy schedule.
+          the personalized attention you need.
         </p>
         <p>
-          <strong>Affordable Pricing:</strong> <br /> <br />
+          <strong>Affordable Pricing:</strong> <br />
           We offer a variety of coaching packages to fit your budget, committed
           in helping you achieve your esports goals.
         </p>

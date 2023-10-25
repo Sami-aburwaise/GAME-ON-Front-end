@@ -12,7 +12,6 @@ import { BASE_URL } from '../Globals'
 import Sessions from './components/Sessions'
 import UserProfile from './pages/UserProfile'
 
-
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 
@@ -77,13 +76,18 @@ const App = () => {
         <CssBaseline />
         <Nav user={user} />
         <Routes>
-          <Route path={'/gamesession'} element={<Sessions user={user} coaches={coaches} />} />
+          <Route
+            path={'/gamesession'}
+            element={<Sessions user={user} coaches={coaches} />}
+          />
           <Route path="/" element={<Home coaches={coaches} user={user} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin setUser={setUser} />} />
           <Route
             path="/profile"
-            element={<UserProfile user={user} setUser={setUser} coaches={coaches} />}
+            element={
+              <UserProfile user={user} setUser={setUser} coaches={coaches} />
+            }
           />
         </Routes>
         <Footer />

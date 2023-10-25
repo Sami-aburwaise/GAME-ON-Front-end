@@ -82,49 +82,52 @@ const UserProfile = ({ user, setUser, coaches }) => {
             <h4>Discord: {userInfo.discordAccount}</h4>
           </div>
         </div>
+        {userInfo.data.length !== 0 && (
+          <table className="Schedule">
+            <tbody>
+              <tr>
+                <th>Game</th>
+                <th>Date</th>
+                <th>Session Type</th>
+                <th>Coach</th>
+              </tr>
+            </tbody>
 
-        <table className="Schedule">
-          <tbody>
-            <tr>
-              <th>Game</th>
-              <th>Date</th>
-              <th>Session Type</th>
-              <th>Coach</th>
-            </tr>
-          </tbody>
-
-          {userInfo.data.map(
-            (session) =>
-              moment().isBefore(session.date) && (
-                <tbody key={session._id}>
-                  <tr>
-                    <td className="details">{session.game}</td>
-                    <td className="details">{moment(session.date).format('llll')}</td>
-                    <td className="details">{session.sessionType}</td>
-                    <td className="details">{session.coach}</td>
-                    <td>
-                      <IconButton
-                        color="secondary"
-                        aria-label="add an alarm"
-                        size="large"
-                        onClick={() => editSession(session)}
-                      >
-                        <AlarmIcon />
-                      </IconButton>
-                      <IconButton
-                        aria-label="delete"
-                        size="large"
-                        color="error"
-                        onClick={() => deleteSession(session._id)}
-                      >
-                        <DeleteIcon fontSize="large" />
-                      </IconButton>
-                    </td>
-                  </tr>
-                </tbody>
-              )
-          )}
-        </table>
+            {userInfo.data.map(
+              (session) =>
+                moment().isBefore(session.date) && (
+                  <tbody key={session._id}>
+                    <tr>
+                      <td className="details">{session.game}</td>
+                      <td className="details">
+                        {moment(session.date).format('llll')}
+                      </td>
+                      <td className="details">{session.sessionType}</td>
+                      <td className="details">{session.coach}</td>
+                      <td>
+                        <IconButton
+                          color="secondary"
+                          aria-label="add an alarm"
+                          size="large"
+                          onClick={() => editSession(session)}
+                        >
+                          <AlarmIcon />
+                        </IconButton>
+                        <IconButton
+                          aria-label="delete"
+                          size="large"
+                          color="error"
+                          onClick={() => deleteSession(session._id)}
+                        >
+                          <DeleteIcon fontSize="large" />
+                        </IconButton>
+                      </td>
+                    </tr>
+                  </tbody>
+                )
+            )}
+          </table>
+        )}
         {selectedSession && (
           <Sessions
             user={user}
