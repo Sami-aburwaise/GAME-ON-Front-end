@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
-import { BASE_URL } from '../../Globals'
+import { BASE_URL, Client } from '../../Globals'
 import Rating from '@mui/material/Rating'
 import Button from '@mui/material/Button'
 import Coaches from './Coaches'
@@ -21,11 +21,11 @@ const AddReview = ({ user, selectedSession, setSelectedSession, coaches }) => {
   }
 
   const handleSubmit = async (sessionID, coachID) => {
-    let response = await axios.post(
+    let response = await Client.post(
       `${BASE_URL}/add_review?coach_id=${coachID}`,
       formState
     )
-    await axios.get(`${BASE_URL}/gamesession/delete/${sessionID}`)
+    await Client.get(`${BASE_URL}/gamesession/delete/${sessionID}`)
 
     setSelectedSession(null)
   }
