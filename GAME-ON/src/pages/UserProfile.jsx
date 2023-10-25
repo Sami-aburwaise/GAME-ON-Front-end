@@ -51,7 +51,7 @@ const UserProfile = ({ user, setUser, coaches }) => {
 
   return (
     userInfo && (
-      <div className="full-page">
+      <div className="full-page" id="profilep">
         <Button
           variant="outlined"
           color="error"
@@ -78,18 +78,16 @@ const UserProfile = ({ user, setUser, coaches }) => {
             <h4>Discord: {userInfo.discordAccount}</h4>
           </div>
         </div>
-
-        <table className="Schedule">
-          <tbody>
-            <tr>
-              <th>Game</th>
-              <th>Date</th>
-              <th>Session Type</th>
-              <th>Coach</th>
-              <th>Status</th>
-            </tr>
-          </tbody>
-
+        {userInfo.data.length !== 0 && (
+          <table className="Schedule">
+            <tbody>
+              <tr className="tableformat">
+                <th>Game</th>
+                <th>Date</th>
+                <th>Session Type</th>
+                <th>Coach</th>
+              </tr>
+            </tbody>
           {userInfo.data.map((session) => (
             <tbody key={session._id}>
               <tr>

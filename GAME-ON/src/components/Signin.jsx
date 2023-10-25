@@ -32,16 +32,21 @@ const Signin = ({ setUser }) => {
 
   return (
     <div className="full-page">
-      <form onSubmit={handleSubmit}>
-        <h1>Sign in</h1>
-        <label htmlFor="emailAddress">Email Address</label>
+      <form onSubmit={handleSubmit} className="signupform">
+        <h1 className="signinh1">Sign in</h1>
+        <br />
+        <label htmlFor="emailAddress" className="signinlabel">
+          Email Address
+        </label>
         <input
           type="email"
           id="emailAddress"
           onChange={handleChange}
           value={signinState.emailAddress}
         />
-        <label htmlFor="passwordDigest">Password</label>
+        <label htmlFor="passwordDigest" className="signinlabel">
+          Password
+        </label>
         <input
           type="password"
           id="password"
