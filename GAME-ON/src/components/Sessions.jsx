@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../Globals'
 import axios from 'axios'
+import moment from 'moment'
+moment().format()
 
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
@@ -13,12 +15,16 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import Button from '@mui/material/Button'
 
-const Sessions = ({ user, coaches, sessionToEdit }) => {
+
+const Sessions = ({ user, coaches, sessionToEdit, setSelectedSession }) => {
   const [games, setGames] = useState([
     'Roblox',
     'Call of duty',
     'Fortnite',
-    'Rainbow Six Siege'
+    'Rainbow Six Siege',
+    'Minecraft',
+    'Blox fruit',
+    'CSGO'
   ])
   const [sessionTypes, setSessionType] = useState([
     {
@@ -53,13 +59,12 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
   let startingFormState = {
     game: '',
     date: '',
-    sessionType: '',
+    sessionType: 'Standard Training',
     coach: '',
     userId: user.id
   }
 
   if (sessionToEdit) {
-    console.log('edit')
     startingFormState = sessionToEdit
   }
 
@@ -67,12 +72,10 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
 
   const handleChange = (event) => {
     event.preventDefault()
-    console.log(event.target.value)
     setFormState({ ...formState, [event.target.id]: event.target.value })
   }
 
   const handleDate = (event) => {
-    console.log(event.$d)
     setFormState({ ...formState, date: event.$d })
   }
 
@@ -87,9 +90,9 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(formState)
     bookSession()
     setFormState(startingFormState)
+    setSelectedSession && setSelectedSession(null)
     navigate('/profile')
   }
 
@@ -121,10 +124,11 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
 
         <h1>Session Date</h1>
         <div className="date">
-          <LocalizationProvider dateAdapter={AdapterDayjs} mode="dark">
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateTimePicker
               onChange={(event) => handleDate(event)}
               defaultValue={dayjs(formState.date)}
+              /*minDate={dayjs(moment().add(1, 'days'))}*/
             />
           </LocalizationProvider>
         </div>
@@ -167,19 +171,22 @@ const Sessions = ({ user, coaches, sessionToEdit }) => {
             aria-label="Platform"
             size="large"
           >
-            {coaches.map((coach) => (
-              <ToggleButton
-                key={coach.name}
-                id="coach"
-                size="large"
-                value={coach.name}
-                onClick={(event) => {
-                  handleChange(event)
-                }}
-              >
-                {coach.name}
-              </ToggleButton>
-            ))}
+            {coaches.map(
+              (coach) =>
+                coach.games.includes(formState.game) && (
+                  <ToggleButton
+                    key={coach.name}
+                    id="coach"
+                    size="large"
+                    value={coach.name}
+                    onClick={(event) => {
+                      handleChange(event)
+                    }}
+                  >
+                    {coach.name}
+                  </ToggleButton>
+                )
+            )}
           </ToggleButtonGroup>
         </div>
 

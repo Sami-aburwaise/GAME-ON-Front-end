@@ -43,7 +43,6 @@ const App = () => {
   const checkSession = async () => {
     try {
       const response = await Client.get('http://localhost:4000/session')
-      console.log(response.data)
       return response.data
     } catch (error) {
       throw error
@@ -67,7 +66,6 @@ const App = () => {
     if (token) {
       checkToken()
     }
-    getCoaches()
   }, [])
 
   return (
@@ -80,7 +78,8 @@ const App = () => {
             path={'/gamesession'}
             element={<Sessions user={user} coaches={coaches} />}
           />
-          <Route path="/" element={<Home coaches={coaches} user={user} />} />
+
+          <Route path="/" element={<Home coaches={coaches} user={user} getCoaches={getCoaches} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin setUser={setUser} />} />
           <Route
