@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios'
 import { BASE_URL } from '../../Globals'
 import Rating from '@mui/material/Rating'
 import Button from '@mui/material/Button'
@@ -16,13 +17,20 @@ const AddReview = ({ user, selectedSession, setSelectedSession, coaches }) => {
     user: user.id
   })
   const handleChange = (event) => {
-    console.log(selectedSession)
     setFormState({ ...formState, [event.target.id]: event.target.value })
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  const handleSubmit = async (sessionID, coachID) => {
+    let response = await axios.post(
+      `${BASE_URL}/add_review?coach_id=${coachID}`,
+      formState
+    )
+    await axios.get(`${BASE_URL}/gamesession/delete/${sessionID}`)
+    console.log(response)
+
+    setSelectedSession(null)
   }
+
   return (
     coach && (
       <div className="full-page">
@@ -48,6 +56,7 @@ const AddReview = ({ user, selectedSession, setSelectedSession, coaches }) => {
 
           <input
             type="text"
+            id="comment"
             onChange={(event) => {
               handleChange(event)
             }}
@@ -57,7 +66,7 @@ const AddReview = ({ user, selectedSession, setSelectedSession, coaches }) => {
             variant="contained"
             color="success"
             size="large"
-            onClick={handleSubmit}
+            onClick={() => handleSubmit(selectedSession._id, coach._id)}
           >
             add review
           </Button>
