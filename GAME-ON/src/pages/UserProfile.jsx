@@ -88,50 +88,51 @@ const UserProfile = ({ user, setUser, coaches }) => {
                 <th>Coach</th>
               </tr>
             </tbody>
-          {userInfo.data.map((session) => (
-            <tbody key={session._id}>
-              <tr>
-                <td className="details">{session.game}</td>
-                <td className="details">
-                  {moment(session.date).format('llll')}
-                </td>
-                <td className="details">{session.sessionType}</td>
-                <td className="details">{session.coach}</td>
-                {moment().isBefore(session.date) ? (
-                  <td>
-                    <IconButton
-                      color="secondary"
-                      aria-label="add an alarm"
-                      size="large"
-                      onClick={() => setSelectedSession(session)}
-                    >
-                      <EditCalendarIcon />
-                    </IconButton>
-                    <IconButton
-                      aria-label="delete"
-                      size="large"
-                      color="error"
-                      onClick={() => deleteSession(session._id)}
-                    >
-                      <DeleteIcon fontSize="large" />
-                    </IconButton>
+            {userInfo.data.map((session) => (
+              <tbody key={session._id}>
+                <tr>
+                  <td className="details">{session.game}</td>
+                  <td className="details">
+                    {moment(session.date).format('llll')}
                   </td>
-                ) : (
-                  <td>
-                    <IconButton
-                      aria-label="delete"
-                      size="large"
-                      color="success"
-                      onClick={() => setSelectedSession(session)}
-                    >
-                      <ThumbsUpDownIcon fontSize="large" />
-                    </IconButton>
-                  </td>
-                )}
-              </tr>
-            </tbody>
-          ))}
-        </table>
+                  <td className="details">{session.sessionType}</td>
+                  <td className="details">{session.coach}</td>
+                  {moment().isBefore(session.date) ? (
+                    <td>
+                      <IconButton
+                        color="secondary"
+                        aria-label="add an alarm"
+                        size="large"
+                        onClick={() => setSelectedSession(session)}
+                      >
+                        <EditCalendarIcon />
+                      </IconButton>
+                      <IconButton
+                        aria-label="delete"
+                        size="large"
+                        color="error"
+                        onClick={() => deleteSession(session._id)}
+                      >
+                        <DeleteIcon fontSize="large" />
+                      </IconButton>
+                    </td>
+                  ) : (
+                    <td>
+                      <IconButton
+                        aria-label="delete"
+                        size="large"
+                        color="success"
+                        onClick={() => setSelectedSession(session)}
+                      >
+                        <ThumbsUpDownIcon fontSize="large" />
+                      </IconButton>
+                    </td>
+                  )}
+                </tr>
+              </tbody>
+            ))}
+          </table>
+        )}
         {selectedSession &&
           (moment().isBefore(selectedSession.date) ? (
             <Sessions
