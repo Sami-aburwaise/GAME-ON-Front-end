@@ -66,7 +66,6 @@ const App = () => {
     if (token) {
       checkToken()
     }
-    getCoaches()
   }, [])
 
   return (
@@ -79,7 +78,7 @@ const App = () => {
             path={'/gamesession'}
             element={<Sessions user={user} coaches={coaches} />}
           />
-          <Route path="/" element={<Home coaches={coaches} user={user} />} />
+          <Route path="/" element={<Home coaches={coaches} user={user} getCoaches={getCoaches} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin setUser={setUser} />} />
           <Route

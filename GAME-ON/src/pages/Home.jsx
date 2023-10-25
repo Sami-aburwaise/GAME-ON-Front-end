@@ -4,11 +4,14 @@ import Coaches from '../components/Coaches'
 import CoachProfile from '../components/CoachProfile'
 
 import * as React from 'react'
-import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 
-const Home = ({ coaches, user }) => {
+const Home = ({ coaches, user, getCoaches }) => {
   const [coach, setCoach] = useState(null)
+
+  useEffect(() => {
+    getCoaches()
+  }, [])
 
   const handleClick = async (coach) => {
     await setCoach(coach)

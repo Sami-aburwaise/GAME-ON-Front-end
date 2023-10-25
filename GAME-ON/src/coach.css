@@ -6,7 +6,7 @@
 .coach-card {
   background-color: #2C2C2C;
   border-radius: 5px;
-  margin: 50px;
+  margin: 0 50px;
   width: 50%;
   height: 100%;
   display: flex;
