@@ -5,6 +5,7 @@ import CoachProfile from '../components/CoachProfile'
 
 import * as React from 'react'
 import Button from '@mui/material/Button'
+import { BASE_URL } from '../../Globals'
 
 const Home = ({ coaches, user, getCoaches }) => {
   const [coach, setCoach] = useState(null)
@@ -22,7 +23,7 @@ const Home = ({ coaches, user, getCoaches }) => {
     <main className="home">
       <section id="Book-session">
         <video autoPlay loop muted>
-          <source src="../src/assets/bg_vid.mp4" type="video/mp4" />
+          <source src={BASE_URL + '/./videos/bg_vid.mp4'} type="video/mp4" />
         </video>
         <div className="content">
           <h1>GAME ON!</h1>
