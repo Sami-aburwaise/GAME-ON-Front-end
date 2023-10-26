@@ -1,5 +1,5 @@
 import Axios from 'axios'
-export const BASE_URL = 'https://game-on-4vo3.onrender.com/'
+export const BASE_URL = 'https://game-on-4vo3.onrender.com'
 
 export const Client = Axios.create({ BASE_URL })
 
