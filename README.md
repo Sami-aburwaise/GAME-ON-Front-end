@@ -40,7 +40,7 @@ Users will be directed to the sign in page after creating the account. The users
 
 ### Home Page
 
-![Home Page](../GAME-ON-Front-end/GAME-ON/src/assets/readme_pics/Screen%20Shot%202023-10-25%20at%202.38.39%20PM.png)
+![Home Page](../GAME-ON/src/assets/readme_pics/Screen%20Shot%202023-10-25%20at%202.38.39%20PM.png)
 
 The Game On home page will include information about GAME ON and its coaches.
 
