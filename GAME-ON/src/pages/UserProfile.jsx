@@ -89,6 +89,7 @@ const UserProfile = ({ user, setUser, coaches, notify }) => {
                 <th>Date</th>
                 <th>Session Type</th>
                 <th>Coach</th>
+                <th>Status</th>
               </tr>
             </tbody>
             {userInfo.data.map((session) => (

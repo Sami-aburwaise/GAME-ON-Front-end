@@ -40,7 +40,9 @@ Users will be directed to the sign in page after creating the account. The users
 
 ### Home Page
 
-![Home Page](../GAME-ON/src/assets/readme_pics/Screen%20Shot%202023-10-25%20at%202.38.39%20PM.png)
+
+![Home Page](https://i.imgur.com/6qEpXkt.png)
+
 
 The Game On home page will include information about GAME ON and its coaches.
 
@@ -49,12 +51,12 @@ A Nav bar is located at the top where users can navigate through the website.
 A "Book a Session" button will be provided that which will render the session booking page.
 
 ### User Profile
-![User Profile](../GAME-ON-Front-end/GAME-ON/src/assets/readme_pics/Screen%20Shot%202023-10-25%20at%202.41.29%20PM.png)
+![User Profile](https://i.imgur.com/PAau8B4.png)
 
 A User will have their very own profile where they can edit their information and uploading an image.
 
 ### Book a Session Page
-![Book Session](../GAME-ON-Front-end/GAME-ON/src/assets/readme_pics/Screen%20Shot%202023-10-25%20at%202.43.19%20PM.png)
+![Book Session](https://i.imgur.com/OC1JlXb.png)
 
 
 Users will have to select which game training session they would like to enroll in. After clicking, the page will automatically scroll down to "choose your coach". Again, choosing a coach will take you to the type of session you want to select.
