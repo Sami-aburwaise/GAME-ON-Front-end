@@ -40,7 +40,9 @@ Users will be directed to the sign in page after creating the account. The users
 
 ### Home Page
 
+
 ![Home Page](https://i.imgur.com/6qEpXkt.png)
+
 
 The Game On home page will include information about GAME ON and its coaches.
 
