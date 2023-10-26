@@ -44,7 +44,7 @@ const App = () => {
 
   const checkToken = async () => {
     const user = await checkSession()
-    setUser(user)
+    await setUser(user)
   }
 
   const [coaches, setCoaches] = useState([])
