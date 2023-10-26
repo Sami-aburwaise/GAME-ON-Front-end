@@ -20,8 +20,6 @@ const Signup = () => {
     event.preventDefault()
     await axios.post(`${BASE_URL}/signup`, signupState)
 
-    console.log(signupState)
-
     setSignupState(startingState)
     navigate('/signin')
   }
