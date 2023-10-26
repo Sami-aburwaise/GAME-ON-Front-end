@@ -134,7 +134,9 @@ const Sessions = ({
             <DateTimePicker
               onChange={(event) => handleDate(event)}
               defaultValue={dayjs(formState.date)}
-              /*minDate={dayjs(moment().add(1, 'days'))}*/
+              minDate={dayjs(moment().add(1, 'days'))}
+              format="D MMMM YYYY hh:00"
+              minuteStep={60}
             />
           </LocalizationProvider>
         </div>
@@ -164,8 +166,8 @@ const Sessions = ({
             ))}
           </ToggleButtonGroup>
 
-          <h3>{selectedSessionType.price}</h3>
-          <h4>{selectedSessionType.description}</h4>
+          <h2>{selectedSessionType.price}</h2>
+          <h2>{selectedSessionType.description}</h2>
         </div>
 
         <h1>Choose Your Coach</h1>

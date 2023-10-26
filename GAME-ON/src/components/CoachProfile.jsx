@@ -18,7 +18,7 @@ const CoachProfile = ({ coach }) => {
       <div className="details-container">
         <h1>{coach.name}</h1>
         <img src={`${BASE_URL}/${coach.profile_image}`} alt="" />
-        <h3>{coach.description}</h3>
+        <h2>{coach.description}</h2>
         <h3>avrage rating: {findAvg(coach.reviews)}</h3>
         <Rating
           name="read-only"
